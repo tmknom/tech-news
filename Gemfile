@@ -1,12 +1,16 @@
 source 'https://rubygems.org'
 
-# RSpec
+# 追加インストール
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
   gem 'pry-rails'
   gem 'pry-byebug'
 end
 
+
+### Rails 自動生成
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -50,7 +54,5 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-commands-rspec'
-  gem 'spring-commands-cucumber'
 end
 
