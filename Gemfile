@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 # 追加インストール
+gem 'sidekiq' # 非同期処理
+
 group :development, :test do
   # テスト
   gem 'rspec-rails', '~> 3.0' # rails対応のrspec
