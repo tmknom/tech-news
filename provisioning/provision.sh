@@ -44,3 +44,9 @@ mysql -u development_user -pdevelopment_password -e "CREATE DATABASE development
 mysql -u test_user -ptest_password -e "CREATE DATABASE test_db CHARACTER SET utf8;"
 mysql -u production_user -pproduction_password -e "CREATE DATABASE production_db CHARACTER SET utf8;"
 
+# redis
+rpm --import http://rpms.famillecollet.com/RPM-GPG-KEY-remi
+rpm -iv http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+yum --enablerepo=remi install -y redis
+chkconfig redis on
+service redis start
