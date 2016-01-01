@@ -17,6 +17,7 @@ group :development, :test do
   gem 'better_errors' # 開発中のエラー画面をわかりやすくする
   gem 'hirb' # モデルの出力結果を表形式に整形
   gem 'hirb-unicode' # hirbの日本語出力をずれないようにする
+  gem 'awesome_print' # Rubyオブジェクトを綺麗に整形
 end
 
 
