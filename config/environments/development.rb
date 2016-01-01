@@ -1,4 +1,11 @@
 Rails.application.configure do
+  # 手動追加部分
+
+  # better_errorsがvagrantで動作しない対処
+  # http://qiita.com/osamu1203/items/c72a1b2c27ac3e02cb15
+  BetterErrors::Middleware.allow_ip! '192.168.100.1'
+
+  # 自動生成部分
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
