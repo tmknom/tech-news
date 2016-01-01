@@ -2,14 +2,21 @@ source 'https://rubygems.org'
 
 # 追加インストール
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
-  gem 'spring-commands-rspec'
-  gem 'spring-commands-cucumber'
-  gem 'pry-rails'
-  gem 'pry-byebug'
-  gem 'better_errors'
-  gem 'hirb'
-  gem 'hirb-unicode'
+  # テスト
+  gem 'rspec-rails', '~> 3.0' # rails対応のrspec
+
+  # コマンド高速化
+  gem 'spring-commands-rspec' # rspecの実行高速化
+  gem 'spring-commands-cucumber' # cucumberの実行高速化
+
+  # デバッガ
+  gem 'pry-rails' # rails cをirbからpryに変更
+  gem 'pry-byebug' # pryでステップ実行できるようにする
+
+  # ログなどの表示整形
+  gem 'better_errors' # 開発中のエラー画面をわかりやすくする
+  gem 'hirb' # モデルの出力結果を表形式に整形
+  gem 'hirb-unicode' # hirbの日本語出力をずれないようにする
 end
 
 
