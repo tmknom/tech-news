@@ -1,3 +1,10 @@
+# pry setting
+
+# Awesome Print : PRY integration
+# https://github.com/michaeldv/awesome_print#pry-integration
+require "awesome_print"
+AwesomePrint.pry!
+
 
 # To use Hirb with Pry add the following code to your .pryrc file
 # https://github.com/pry/pry/wiki/FAQ#hirb
