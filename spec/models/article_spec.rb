@@ -2,14 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   describe '参照系' do
-    let(:article) { create(:article) }
+    let!(:article) { create(:article) }
 
     it '#all' do
-      article # letだと遅延評価されるので一度呼んでおく
       expect(Article.all[0].url).to eq article.url
     end
     it '#first' do
-      article # letだと遅延評価されるので一度呼んでおく
       expect(Article.first.url).to eq article.url
     end
     it '#find_by' do
@@ -26,31 +24,31 @@ RSpec.describe Article, type: :model do
   describe 'insert系' do
     it '#save' do
       article = Article.new(url: 'http://test.save.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
-      expect(article.new_record?).to be(true)
+      expect(article.new_record?).to be_truthy
       article.save
       expect(Article.first.url).to eq 'http://test.save.com/'
-      expect(article.new_record?).to be(false)
+      expect(article.new_record?).to be_falsey
     end
     it '#save!' do
       article = Article.new(url: 'http://test.save!.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
-      expect(article.new_record?).to be(true)
+      expect(article.new_record?).to be_truthy
       article.save!
       expect(Article.first.url).to eq 'http://test.save!.com/'
-      expect(article.new_record?).to be(false)
+      expect(article.new_record?).to be_falsey
     end
     it '#create' do
       article = Article.create(url: 'http://test.create.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
       expect(Article.first.url).to eq 'http://test.create.com/'
       expect(article.url).to eq 'http://test.create.com/'
-      expect(article.persisted?).to be(true)
-      expect(article.new_record?).to be(false)
+      expect(article.persisted?).to be_truthy
+      expect(article.new_record?).to be_falsey
     end
     it '#create!' do
       article = Article.create!(url: 'http://test.create!.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
       expect(Article.first.url).to eq 'http://test.create!.com/'
       expect(article.url).to eq 'http://test.create!.com/'
-      expect(article.persisted?).to be(true)
-      expect(article.new_record?).to be(false)
+      expect(article.persisted?).to be_truthy
+      expect(article.new_record?).to be_falsey
     end
   end
 
