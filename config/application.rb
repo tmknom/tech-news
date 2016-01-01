@@ -8,6 +8,15 @@ Bundler.require(*Rails.groups)
 
 module TechNews
   class Application < Rails::Application
+    # 手動追加部分
+
+    # Active Jobでsidekiqを使うための設定
+    # https://github.com/mperham/sidekiq/wiki/Active-Job#active-job-setup
+    config.active_job.queue_adapter = :sidekiq
+
+
+    # 自動作成部分
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
