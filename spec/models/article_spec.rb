@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   describe '参照系' do
-    let(:article) { FactoryGirl.create(:article) }
+    let(:article) { create(:article) }
 
     it '#all' do
       article # letだと遅延評価されるので一度呼んでおく
@@ -55,7 +55,7 @@ RSpec.describe Article, type: :model do
   end
 
   describe 'update系' do
-    let(:article) { FactoryGirl.create(:article) }
+    let(:article) { create(:article) }
 
     it '#save' do
       article.url = 'http://test.save.com/'
@@ -82,7 +82,7 @@ RSpec.describe Article, type: :model do
   end
 
   describe 'delete系' do
-    let(:article) { FactoryGirl.create(:article) }
+    let(:article) { create(:article) }
 
     it '#destroy' do
       article.destroy
@@ -96,7 +96,7 @@ RSpec.describe Article, type: :model do
   end
 
   describe '異常系' do
-    let(:article) { FactoryGirl.build(:article) }
+    let(:article) { build(:article) }
 
     it 'url がnilの場合' do
       article.url = nil
