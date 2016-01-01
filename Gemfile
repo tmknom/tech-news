@@ -7,6 +7,7 @@ group :development, :test do
   gem 'spring-commands-cucumber'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'better_errors'
 end
 
 
