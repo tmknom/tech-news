@@ -2,14 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   describe '参照系' do
-    let(:article) { create(:article) }
+    let!(:article) { create(:article) }
 
     it '#all' do
-      article # letだと遅延評価されるので一度呼んでおく
       expect(Article.all[0].url).to eq article.url
     end
     it '#first' do
-      article # letだと遅延評価されるので一度呼んでおく
       expect(Article.first.url).to eq article.url
     end
     it '#find_by' do
