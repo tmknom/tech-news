@@ -1,7 +1,8 @@
 class RssCrawlJob < ActiveJob::Base
   queue_as :default
 
-  def perform(*args)
-    # Do something later
+  # RssCrawlJob.perform_later 'sample'
+  def perform(name)
+    p name
   end
 end
