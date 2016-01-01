@@ -8,6 +8,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'better_errors'
+  gem 'hirb'
+  gem 'hirb-unicode'
 end
 
 
