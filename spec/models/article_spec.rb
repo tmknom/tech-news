@@ -24,31 +24,31 @@ RSpec.describe Article, type: :model do
   describe 'insert系' do
     it '#save' do
       article = Article.new(url: 'http://test.save.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
-      expect(article.new_record?).to be(true)
+      expect(article.new_record?).to be_truthy
       article.save
       expect(Article.first.url).to eq 'http://test.save.com/'
-      expect(article.new_record?).to be(false)
+      expect(article.new_record?).to be_falsey
     end
     it '#save!' do
       article = Article.new(url: 'http://test.save!.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
-      expect(article.new_record?).to be(true)
+      expect(article.new_record?).to be_truthy
       article.save!
       expect(Article.first.url).to eq 'http://test.save!.com/'
-      expect(article.new_record?).to be(false)
+      expect(article.new_record?).to be_falsey
     end
     it '#create' do
       article = Article.create(url: 'http://test.create.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
       expect(Article.first.url).to eq 'http://test.create.com/'
       expect(article.url).to eq 'http://test.create.com/'
-      expect(article.persisted?).to be(true)
-      expect(article.new_record?).to be(false)
+      expect(article.persisted?).to be_truthy
+      expect(article.new_record?).to be_falsey
     end
     it '#create!' do
       article = Article.create!(url: 'http://test.create!.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
       expect(Article.first.url).to eq 'http://test.create!.com/'
       expect(article.url).to eq 'http://test.create!.com/'
-      expect(article.persisted?).to be(true)
-      expect(article.new_record?).to be(false)
+      expect(article.persisted?).to be_truthy
+      expect(article.new_record?).to be_falsey
     end
   end
 
