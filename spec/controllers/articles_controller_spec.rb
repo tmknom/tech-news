@@ -5,7 +5,7 @@ RSpec.describe ArticlesController, type: :controller do
   describe 'GET #index' do
     before do
       get :index
-      @article = Article.new(url: 'http://test.save.com/', title: 'Google', description: '検索エンジンだよ', bookmark_date_time: '2015/12/30 12:34:56')
+      @article = Article.new(url: 'http://test.save.com/', title: 'Google', description: '検索エンジンだよ', bookmarked_at: '2015/12/30 12:34:56')
     end
 
     it 'ステータスコードとして200が返ること' do
