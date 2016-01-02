@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: articles
+#
+#  id            :integer          not null, primary key
+#  url           :string(255)      not null
+#  title         :string(255)      not null
+#  description   :string(255)      not null
+#  bookmarked_at :datetime         not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+# Indexes
+#
+#  index_articles_on_url  (url) UNIQUE
+#
+
 FactoryGirl.define do
   factory :article do
     sequence(:url) { |i| "https://www.google#{i}.co.jp/" }
