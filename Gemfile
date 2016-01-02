@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # 追加インストール
 gem 'sidekiq' # 非同期処理
+gem 'simple-rss', '~> 1.3', '>= 1.3.1' # RSSパーサ
 
 group :development, :test do
   # テスト
