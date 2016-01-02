@@ -14,6 +14,10 @@ module TechNews
     # https://github.com/mperham/sidekiq/wiki/Active-Job#active-job-setup
     config.active_job.queue_adapter = :sidekiq
 
+    # タイムゾーンの設定
+    config.time_zone = 'UTC'
+    config.active_record.default_timezone = :utc
+
 
     # 自動作成部分
 
