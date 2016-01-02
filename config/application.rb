@@ -15,6 +15,7 @@ module TechNews
     config.active_job.queue_adapter = :sidekiq
 
     # タイムゾーンの設定
+    # http://twodollarz.hatenablog.jp/entry/20120703
     config.time_zone = 'UTC'
     config.active_record.default_timezone = :utc
 
