@@ -4,7 +4,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string :url, null: false
       t.string :title, null: false
       t.string :description, null: false
-      t.datetime :bookmark_date_time, null: false
+      t.datetime :bookmarked_at, null: false
 
       t.timestamps null: false
     end

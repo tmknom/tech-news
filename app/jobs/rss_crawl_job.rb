@@ -47,8 +47,8 @@ class ArticleRssConverter
     title = rss_item.title.force_encoding('utf-8')
     url = rss_item.link.force_encoding('utf-8')
     description = rss_item.description.force_encoding('utf-8')
-    bookmark_date_time = rss_item.dc_date # Time型
-    Article.new(url: url, title: title, description: description, bookmark_date_time: bookmark_date_time)
+    bookmarked_at = rss_item.dc_date # Time型
+    Article.new(url: url, title: title, description: description, bookmarked_at: bookmarked_at)
   end
 end
 
