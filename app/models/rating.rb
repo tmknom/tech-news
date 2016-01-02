@@ -3,7 +3,7 @@
 # Table name: ratings
 #
 #  id                    :integer          not null, primary key
-#  article_id            :integer
+#  article_id            :integer          not null
 #  hatena_bookmark_count :integer          default(0), not null
 #  facebook_count        :integer          default(0), not null
 #  pocket_count          :integer          default(0), not null

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160102153034) do
   add_index "articles", ["url"], name: "index_articles_on_url", unique: true, using: :btree
 
   create_table "ratings", force: :cascade do |t|
-    t.integer  "article_id",            limit: 4
+    t.integer  "article_id",            limit: 4,             null: false
     t.integer  "hatena_bookmark_count", limit: 4, default: 0, null: false
     t.integer  "facebook_count",        limit: 4, default: 0, null: false
     t.integer  "pocket_count",          limit: 4, default: 0, null: false
