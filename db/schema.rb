@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151227151211) do
+ActiveRecord::Schema.define(version: 20160102153034) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "url",           limit: 255, null: false
@@ -24,4 +24,16 @@ ActiveRecord::Schema.define(version: 20151227151211) do
 
   add_index "articles", ["url"], name: "index_articles_on_url", unique: true, using: :btree
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "article_id",            limit: 4,             null: false
+    t.integer  "hatena_bookmark_count", limit: 4, default: 0, null: false
+    t.integer  "facebook_count",        limit: 4, default: 0, null: false
+    t.integer  "pocket_count",          limit: 4, default: 0, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "ratings", ["article_id"], name: "index_ratings_on_article_id", using: :btree
+
+  add_foreign_key "ratings", "articles"
 end
