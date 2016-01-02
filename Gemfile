@@ -23,6 +23,9 @@ group :development, :test do
   gem 'hirb-unicode' # hirbの日本語出力をずれないようにする
   gem 'awesome_print' # Rubyオブジェクトを綺麗に整形
   gem 'rails-flog', require: 'flog' # SQLやHashを綺麗に整形
+
+  # 開発効率化
+  gem 'annotate'
 end
 
 
