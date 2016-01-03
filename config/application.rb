@@ -11,6 +11,7 @@ module TechNews
     # 手動追加部分
 
     # オートロード設定
+    config.autoload_paths += %W(#{config.root}/app/applications)
     config.autoload_paths += %W(#{config.root}/app/infrastructures/repositories)
     config.autoload_paths += %W(#{config.root}/app/infrastructures/gateways)
 
