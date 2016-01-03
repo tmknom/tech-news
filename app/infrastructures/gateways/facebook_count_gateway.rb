@@ -1,4 +1,5 @@
 class FacebookCountGateway
+  require 'open-uri'
   require 'json'
 
   FACEBOOK_COUNT_URL = 'http://graph.facebook.com/?id='.freeze
