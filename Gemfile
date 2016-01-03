@@ -8,6 +8,8 @@ group :development, :test do
   # テスト
   gem 'rspec-rails', '~> 3.0' # rails対応のrspec
   gem 'factory_girl_rails' # Fixtureを簡単に定義できるようにする
+  gem 'webmock'
+  gem 'vcr'
 
   # コマンド高速化
   gem 'spring-commands-rspec' # rspecの実行高速化
