@@ -1,33 +1,18 @@
 class RssCrawlApplication
   def initialize
-    @curl_adapter = CurlAdapter.new
-    @rss_parser = RssParser.new
+    @rss_gateway = RssGateway.new
     @article_rss_converter = ArticleRssConverter.new
     @article_command_repository = ArticleCommandRepository.new
     @rating_command_repository = RatingCommandRepository.new
   end
 
   def crawl(url)
-    raw_rss_string = @curl_adapter.curl url
-    rss_items = @rss_parser.parse raw_rss_string
+    rss_items = @rss_gateway.get url
     rss_items.each do |rss_item|
       article = @article_rss_converter.convert rss_item
       @article_command_repository.save_if_not_exists article
       @rating_command_repository.save_if_not_exists article.id
     end
-  end
-end
-
-class CurlAdapter
-  def curl(url)
-    `curl -s "#{url}"`
-  end
-end
-
-class RssParser
-  def parse(raw_rss_string)
-    rss = SimpleRSS.parse raw_rss_string
-    rss.items
   end
 end
 
