@@ -16,7 +16,8 @@ class RssCrawlApplication
     @curl_adapter = CurlAdapter.new
     @rss_parser = RssParser.new
     @article_rss_converter = ArticleRssConverter.new
-    @article_repository = ArticleRepository.new
+    @article_command_repository = ArticleCommandRepository.new
+    @rating_command_repository = RatingCommandRepository.new
   end
 
   def crawl(url)
@@ -24,7 +25,8 @@ class RssCrawlApplication
     rss_items = @rss_parser.parse raw_rss_string
     rss_items.each do |rss_item|
       article = @article_rss_converter.convert rss_item
-      @article_repository.save_if_not_exists article
+      @article_command_repository.save_if_not_exists article
+      @rating_command_repository.save_if_not_exists article.id
     end
   end
 end
@@ -51,12 +53,3 @@ class ArticleRssConverter
     Article.new(url: url, title: title, description: description, bookmarked_at: bookmarked_at)
   end
 end
-
-class ArticleRepository
-  def save_if_not_exists(article)
-    unless Article.exists?(url: article.url)
-      article.save
-    end
-  end
-end
-
