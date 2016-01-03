@@ -11,4 +11,9 @@ class RatingCommandRepository
     rating = Rating.find_by(article_id: article_id)
     rating.update(hatena_bookmark_count: hatena_bookmark_count)
   end
+
+  def save_facebook_count(article_id, facebook_count)
+    rating = Rating.find_by(article_id: article_id)
+    rating.update(facebook_count: facebook_count)
+  end
 end
