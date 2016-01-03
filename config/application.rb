@@ -12,6 +12,7 @@ module TechNews
 
     # オートロード設定
     config.autoload_paths += %W(#{config.root}/app/infrastructures/repositories)
+    config.autoload_paths += %W(#{config.root}/app/infrastructures/gateways)
 
     # Active Jobでsidekiqを使うための設定
     # https://github.com/mperham/sidekiq/wiki/Active-Job#active-job-setup
