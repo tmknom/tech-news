@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.b.st-hatena.com/entry.count?url=http://www.yahoo.co.jp/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 03 Jan 2016 13:59:15 GMT
+      Content-Type:
+      - text/plain
+      Content-Length:
+      - '5'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=1800, s-maxage=3600
+      Expires:
+      - Sun, 03 Jan 2016 13:45:06 GMT
+      X-Varnish:
+      - 1051083553 1013002455
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      Accept-Ranges:
+      - bytes
+      X-Roles:
+      - "[vi]"
+    body:
+      encoding: UTF-8
+      string: '13816'
+    http_version: 
+  recorded_at: Sun, 03 Jan 2016 13:40:42 GMT
+recorded_with: VCR 3.0.1

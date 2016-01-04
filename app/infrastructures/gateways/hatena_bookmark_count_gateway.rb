@@ -5,6 +5,6 @@ class HatenaBookmarkCountGateway
 
   def get(url)
     raw_body = open(HATENA_BOOKMARK_COUNT_URL + url).read
-    raw_body.empty? ? '0' : raw_body
+    raw_body.empty? ? '0' : raw_body.to_i
   end
 end

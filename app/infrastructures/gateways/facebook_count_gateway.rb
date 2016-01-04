@@ -7,6 +7,6 @@ class FacebookCountGateway
   def get(url)
     raw_body = open(FACEBOOK_COUNT_URL + url).read
     json = JSON.parse(raw_body)
-    json.has_key?('shares') ? json['shares'] : 0
+    json.has_key?('shares') ? json['shares'].to_i : 0
   end
 end

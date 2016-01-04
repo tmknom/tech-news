@@ -94,3 +94,10 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+# HTTP 通信のテストデータの生成＆モック化するための設定
+# https://github.com/vcr/vcr
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/fixtures'
+  config.hook_into :webmock
+end

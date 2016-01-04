@@ -7,11 +7,15 @@ class RssGateway
   private
 
   def curl(url)
-    `curl -s "#{url}"`
+    require 'open-uri'
+    open(url, 'User-Agent' => FAKE_USER_AGENT).read
   end
 
   def parse(raw_rss_string)
     rss = SimpleRSS.parse raw_rss_string
     rss.items
   end
+
+  # はてブはユーザエージェントがrubyだと弾かれるので偽装しておく
+  FAKE_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko)'.freeze
 end
