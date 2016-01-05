@@ -10,10 +10,11 @@ namespace :command do
     task :show_all do
       queues, scheduled_set, retry_set, dead_set = [], [], [], []
 
-      Sidekiq::Queue.new.each { |job| queues << create_pretty_job(job) }
+      queue_names.each { |queue_name| Sidekiq::Queue.new(queue_name).each { |job| queues << create_pretty_job(job) } }
       Sidekiq::ScheduledSet.new.each { |job| scheduled_set << create_pretty_job(job) }
       Sidekiq::RetrySet.new.each { |job| retry_set << create_pretty_job(job) }
       Sidekiq::DeadSet.new.each { |job| dead_set << create_pretty_job(job) }
+
 
       show(queues.sort, scheduled_set.sort, retry_set.sort, dead_set.sort)
     end
@@ -22,7 +23,7 @@ namespace :command do
     task :show_verbose_all do
       queues, scheduled_set, retry_set, dead_set = [], [], [], []
 
-      Sidekiq::Queue.new.each { |job| queues << create_verbose_job(job) }
+      queue_names.each { |queue_name| Sidekiq::Queue.new(queue_name).each { |job| queues << create_verbose_job(job) } }
       Sidekiq::ScheduledSet.new.each { |job| scheduled_set << create_verbose_job(job) }
       Sidekiq::RetrySet.new.each { |job| retry_set << create_verbose_job(job) }
       Sidekiq::DeadSet.new.each { |job| dead_set << create_verbose_job(job) }
@@ -37,13 +38,17 @@ namespace :command do
 
     desc 'Sidekiqのジョブを全てクリア'
     task :clear_all do
-      queues = Sidekiq::Queue.new.clear
+      queues = 0
+      queue_names.each { |queue_name|
+        result = Sidekiq::Queue.new(queue_name).clear
+        queues += result[0]
+      }
       scheduled_set = Sidekiq::ScheduledSet.new.clear
       retry_set = Sidekiq::RetrySet.new.clear
       dead_set = Sidekiq::DeadSet.new.clear
 
       cleared ={}
-      cleared.store(:queue, queues[0]) unless queues[0] == 0
+      cleared.store(:queue, queues) unless queues == 0
       cleared.store(:scheduled, scheduled_set) unless scheduled_set == 0
       cleared.store(:retry, retry_set) unless retry_set == 0
       cleared.store(:dead, dead_set) unless dead_set == 0
@@ -55,6 +60,12 @@ namespace :command do
 
 
     private
+
+    def queue_names
+      queue_names = []
+      Sidekiq::Queue.all.each { |queue| queue_names << queue.name }
+      queue_names
+    end
 
     def show(queues, scheduled_set, retry_set, dead_set)
       jobs = create_jobs(queues, scheduled_set, retry_set, dead_set)
@@ -76,7 +87,7 @@ namespace :command do
       arguments = job.args[0]['arguments'].join(',')
       queue = job.queue
       created_at = format_time(job.created_at)
-      "#{created_at} #{queue} #{job_class}(#{arguments})"
+      "#{created_at} #{queue} #{job_class}#perform(#{arguments})"
     end
 
     def create_verbose_job(job)
