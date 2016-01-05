@@ -5,7 +5,7 @@ RSpec.describe RssCrawlJob, type: :job do
 
   describe '#perform_later' do
     it 'キューにJobが正しく登録されること' do
-      assert_enqueued_with(job: RssCrawlJob, args: ['dummy_url'], queue: 'default') do
+      assert_enqueued_with(job: RssCrawlJob, args: ['dummy_url'], queue: 'rss') do
         # キューにジョブが登録されていないことを確認
         assert_no_enqueued_jobs
         # 実行

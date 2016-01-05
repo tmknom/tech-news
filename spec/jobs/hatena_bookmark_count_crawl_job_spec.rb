@@ -5,7 +5,7 @@ RSpec.describe HatenaBookmarkCountCrawlJob, type: :job do
 
   describe '#perform_later' do
     it 'キューにJobが正しく登録されること' do
-      assert_enqueued_with(job: HatenaBookmarkCountCrawlJob, args: ['dummy_id'], queue: 'default') do
+      assert_enqueued_with(job: HatenaBookmarkCountCrawlJob, args: ['dummy_id'], queue: 'rating') do
         # キューにジョブが登録されていないことを確認
         assert_no_enqueued_jobs
         # 実行

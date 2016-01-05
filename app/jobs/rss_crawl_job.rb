@@ -1,5 +1,5 @@
 class RssCrawlJob < ActiveJob::Base
-  queue_as :default
+  queue_as QueueName::RSS
 
   def perform(url)
     RssCrawlApplication.new.crawl url
