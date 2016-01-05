@@ -1,5 +1,5 @@
 class HatenaBookmarkCountCrawlJob < ActiveJob::Base
-  queue_as :default
+  queue_as QueueName::RATING
 
   def initialize(*arguments)
     super(*arguments)
