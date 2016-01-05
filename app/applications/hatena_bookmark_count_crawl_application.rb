@@ -5,9 +5,9 @@ class HatenaBookmarkCountCrawlApplication
     @rating_command_repository = RatingCommandRepository.new
   end
 
-  def crawl(url)
-    article_id = @article_query_repository.get_id_by_url url
-    hatena_bookmark_count = get_hatena_bookmark_count url
+  def crawl(article_id)
+    article = @article_query_repository.refer article_id
+    hatena_bookmark_count = get_hatena_bookmark_count article.url
     @rating_command_repository.save_hatena_bookmark_count(article_id, hatena_bookmark_count)
   end
 

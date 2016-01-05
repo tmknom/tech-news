@@ -6,8 +6,7 @@ class HatenaBookmarkCountCrawlJob < ActiveJob::Base
     @application = HatenaBookmarkCountCrawlApplication.new
   end
 
-  # HatenaBookmarkCountCrawlJob.perform_later
-  def perform(url)
-    @application.crawl url
+  def perform(article_id)
+    @application.crawl article_id
   end
 end

@@ -10,8 +10,7 @@ RSpec.describe HatenaBookmarkCountCrawlApplication, type: :application do
       expect(Rating.first.hatena_bookmark_count).to eq rating.hatena_bookmark_count
       # 実行
       allow(hatena_bookmark_count_crawl_application).to receive(:get_hatena_bookmark_count).and_return(999)
-      article = Article.find(rating.article_id)
-      hatena_bookmark_count_crawl_application.crawl article.url
+      hatena_bookmark_count_crawl_application.crawl rating.article_id
       # クロール後にデータが更新されたことを確認
       expect(Rating.first.hatena_bookmark_count).to eq 999
     end

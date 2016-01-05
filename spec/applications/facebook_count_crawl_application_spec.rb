@@ -10,8 +10,7 @@ RSpec.describe FacebookCountCrawlApplication, type: :application do
       expect(Rating.first.facebook_count).to eq rating.facebook_count
       # 実行
       allow(facebook_count_crawl_application).to receive(:get_facebook_count).and_return(999)
-      article = Article.find(rating.article_id)
-      facebook_count_crawl_application.crawl article.url
+      facebook_count_crawl_application.crawl rating.article_id
       # クロール後にデータが更新されたことを確認
       expect(Rating.first.facebook_count).to eq 999
     end

@@ -6,8 +6,7 @@ class FacebookCountCrawlJob < ActiveJob::Base
     @application = FacebookCountCrawlApplication.new
   end
 
-  # FacebookCountCrawlJob.perform_later url
-  def perform(url)
-    @application.crawl url
+  def perform(article_id)
+    @application.crawl article_id
   end
 end

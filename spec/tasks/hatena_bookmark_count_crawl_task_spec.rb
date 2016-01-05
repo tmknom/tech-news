@@ -9,9 +9,13 @@ RSpec.describe HatenaBookmarkCountCrawlTask, type: :task do
 
   describe '#run' do
     it 'Jobが3件キューに登録されること' do
+      # キューにジョブが登録されていないことを確認
       assert_no_enqueued_jobs
+      # 実行
       HatenaBookmarkCountCrawlTask.new.run
+      # キューにジョブが登録されたことを確認
       assert_enqueued_jobs 3
+      expect(enqueued_jobs.first[:job]).to eq HatenaBookmarkCountCrawlJob
     end
   end
 
