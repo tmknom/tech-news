@@ -4,9 +4,9 @@ class FacebookCountCrawlTask
   end
 
   def run
-    urls = @article_query_repository.list_recent_url
-    urls.each do |url|
-      FacebookCountCrawlJob.perform_later url
+    article_ids = @article_query_repository.list_recent_id
+    article_ids.each do |article_id|
+      FacebookCountCrawlJob.perform_later article_id
     end
   end
 end

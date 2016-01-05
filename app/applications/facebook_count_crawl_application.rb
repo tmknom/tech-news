@@ -5,9 +5,9 @@ class FacebookCountCrawlApplication
     @rating_command_repository = RatingCommandRepository.new
   end
 
-  def crawl(url)
-    article_id = @article_query_repository.get_id_by_url url
-    facebook_count = get_facebook_count url
+  def crawl(article_id)
+    article = @article_query_repository.refer article_id
+    facebook_count = get_facebook_count article.url
     @rating_command_repository.save_facebook_count(article_id, facebook_count)
   end
 
