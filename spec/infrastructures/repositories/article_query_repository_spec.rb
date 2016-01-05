@@ -34,19 +34,6 @@ RSpec.describe ArticleQueryRepository, type: :model do
     end
   end
 
-  describe '#get_id_by_url' do
-    let!(:article) { create(:article) }
-
-    it '存在するデータ' do
-      id = article_query_repository.get_id_by_url article.url
-      expect(id).to eq article.id
-    end
-
-    it '存在しないデータ' do
-      expect { article_query_repository.get_id_by_url 'invalid_url' }.to raise_error(NoMethodError)
-    end
-  end
-
   describe '#list_recent_id' do
     let!(:ratings) do
       create_list(:rating, 3)
