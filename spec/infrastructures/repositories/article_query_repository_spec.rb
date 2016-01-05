@@ -21,6 +21,19 @@ RSpec.describe ArticleQueryRepository, type: :model do
 
   let(:article_query_repository) { ArticleQueryRepository.new }
 
+  describe '#refer' do
+    let!(:article) { create(:article) }
+
+    it '存在するデータ' do
+      actual = article_query_repository.refer article.id
+      expect(article.url).to eq actual.url
+    end
+
+    it '存在しないデータ' do
+      expect { article_query_repository.refer 'invalid_id' }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
   describe '#get_id_by_url' do
     let!(:article) { create(:article) }
 

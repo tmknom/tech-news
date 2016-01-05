@@ -1,4 +1,8 @@
 class ArticleQueryRepository
+  def refer(id)
+    Article.find(id)
+  end
+
   def get_id_by_url(url)
     Article.select(:id).find_by(url: url).id
   end
