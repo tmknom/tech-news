@@ -1,13 +1,19 @@
 source 'https://rubygems.org'
 
-# 追加インストール
+### 追加インストール
 gem 'sidekiq' # 非同期処理
 gem 'simple-rss', '~> 1.3', '>= 1.3.1' # RSSパーサ
+gem 'awesome_print' # Rubyオブジェクトを綺麗に整形
 
-group :development, :test do
+group :test do
   # テスト
   gem 'rspec-rails', '~> 3.0' # rails対応のrspec
+  gem 'factory_girl_rails' # Fixtureを簡単に定義できるようにする
+  gem 'webmock' # HTTP通信をモック化する
+  gem 'vcr' # 一回目のHTTP通信から自動的にFixtureを作成し、二回目以降はFixtureを参照する
+end
 
+group :development do
   # コマンド高速化
   gem 'spring-commands-rspec' # rspecの実行高速化
   gem 'spring-commands-cucumber' # cucumberの実行高速化
@@ -20,17 +26,10 @@ group :development, :test do
   gem 'better_errors' # 開発中のエラー画面をわかりやすくする
   gem 'hirb' # モデルの出力結果を表形式に整形
   gem 'hirb-unicode' # hirbの日本語出力をずれないようにする
-  gem 'awesome_print' # Rubyオブジェクトを綺麗に整形
   gem 'rails-flog', require: 'flog' # SQLやHashを綺麗に整形
 
   # 開発効率化
   gem 'annotate'
-end
-
-group :test do
-  gem 'factory_girl_rails' # Fixtureを簡単に定義できるようにする
-  gem 'webmock' # HTTP通信をモック化する
-  gem 'vcr' # 一回目のHTTP通信から自動的にFixtureを作成し、二回目以降はFixtureを参照する
 end
 
 ### Rails 自動生成
