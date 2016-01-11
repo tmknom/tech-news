@@ -22,6 +22,8 @@ def execute_deploy():
 
 def initialize_dir():
   env.release_dir = RELEASES_DIR + '/' + WORK_DIR
+  sudo('mkdir -p /var/log/app')
+  sudo('chmod 777 /var/log/app')
   run('mkdir -p %s' % (RELEASES_DIR))
 
 def clone():
@@ -34,6 +36,7 @@ def symlink():
 
 def bundle_install():
   with cd(CURRENT_DIR):
+    #run('git checkout master')
     run('bundle install --path vendor/bundle --without development')
 
 def db_migrate():
