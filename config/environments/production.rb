@@ -1,4 +1,8 @@
 Rails.application.configure do
+  # ログ出力先を変更
+  config.paths['log'] = '/var/log/app/production.log'
+
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
