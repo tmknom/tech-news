@@ -47,7 +47,7 @@ def db_migrate():
 def start():
   with cd(CURRENT_DIR):
     run('RAILS_ENV=production bundle exec rails s -b 0.0.0.0 -d', pty=False)
-    run('RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L log/sidekiq.log -P tmp/pids/sidekiq.pid -d', pty=False)
+    run('RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L /var/log/app/sidekiq.log -P tmp/pids/sidekiq.pid -d', pty=False)
 
 def stop():
   with cd(CURRENT_DIR):
