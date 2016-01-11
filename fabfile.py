@@ -14,6 +14,7 @@ def deploy():
 def execute_deploy():
   stop()
   initialize_dir()
+  env()
   clone()
   symlink()
   bundle_install()
@@ -27,6 +28,14 @@ def initialize_dir():
   sudo('chmod 777 /var/log/app')
   run('mkdir -p %s' % (RELEASES_DIR))
 
+def env():
+  secret_key_base = run('printenv SECRET_KEY_BASE', warn_only=True)
+  if not secret_key_base:
+    with cd(CURRENT_DIR):
+      secret_key_base = run('RAILS_ENV=production bundle exec rake secret')
+      run('echo "export SECRET_KEY_BASE=%s" >> ~/.bash_profile' % (secret_key_base))
+      run('source ~/.bash_profile')
+
 def clone():
   repository_url = 'https://github.com/' + REPOSITORY + '.git'
   with cd(RELEASES_DIR):
@@ -37,7 +46,7 @@ def symlink():
 
 def bundle_install():
   with cd(CURRENT_DIR):
-    #run('git checkout master')
+    run('git checkout master')
     run('bundle install --path vendor/bundle --without development')
 
 def db_migrate():
