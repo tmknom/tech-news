@@ -34,6 +34,28 @@ RSpec.describe ArticleQueryRepository, type: :model do
     end
   end
 
+  describe '#list_today' do
+    let!(:ratings) do
+      create_list(:rating, 3)
+    end
+
+    it '今日の一覧が取得できること' do
+      article = article_query_repository.list_today
+      expect(article.size).to eq 3
+    end
+  end
+
+  describe '#list_week' do
+    let!(:ratings) do
+      create_list(:rating, 3)
+    end
+
+    it '今週の一覧が取得できること' do
+      article = article_query_repository.list_week
+      expect(article.size).to eq 3
+    end
+  end
+
   describe '#list_recent_id' do
     let!(:ratings) do
       create_list(:rating, 3)
