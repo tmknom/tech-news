@@ -19,6 +19,7 @@ def execute_deploy():
   bundle_install()
   db_migrate()
   start()
+  cron()
 
 def initialize_dir():
   env.release_dir = RELEASES_DIR + '/' + WORK_DIR
@@ -52,3 +53,7 @@ def stop():
   with cd(CURRENT_DIR):
     run('RAILS_ENV=production bundle exec sidekiqctl stop tmp/pids/sidekiq.pid', warn_only=True)
     run('cat tmp/pids/server.pid | xargs kill -9', warn_only=True)
+
+def cron():
+  with cd(CURRENT_DIR):
+    run('bundle exec whenever --update-crontab')
