@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 ### 追加インストール
+gem 'whenever', :require => false # crontab管理
 gem 'sidekiq' # 非同期処理
 gem 'simple-rss', '~> 1.3', '>= 1.3.1' # RSSパーサ
 gem 'awesome_print' # Rubyオブジェクトを綺麗に整形
