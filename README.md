@@ -97,12 +97,33 @@ cat tmp/pids/server.pid | xargs kill -9
 ### 起動
 
 ```bash
-RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L log/sidekiq.log -P tmp/pids/sidekiq.pid -d
+RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L /var/log/app/sidekiq.log -P tmp/pids/sidekiq.pid -d
 ```
 
 ### 終了
 
 ```bash
 RAILS_ENV=production bundle exec sidekiqctl stop tmp/pids/sidekiq.pid
+```
+
+
+## cronの設定
+
+### 設定確認
+
+```bash
+RAILS_ENV=production bundle exec whenever
+```
+
+### 設定反映
+
+```bash
+RAILS_ENV=production bundle exec whenever --update-crontab
+```
+
+### 設定削除
+
+```bash
+RAILS_ENV=production bundle exec whenever --clear-crontab
 ```
 

@@ -19,9 +19,12 @@ def execute_deploy():
   bundle_install()
   db_migrate()
   start()
+  cron()
 
 def initialize_dir():
   env.release_dir = RELEASES_DIR + '/' + WORK_DIR
+  sudo('mkdir -p /var/log/app')
+  sudo('chmod 777 /var/log/app')
   run('mkdir -p %s' % (RELEASES_DIR))
 
 def clone():
@@ -34,6 +37,7 @@ def symlink():
 
 def bundle_install():
   with cd(CURRENT_DIR):
+    #run('git checkout master')
     run('bundle install --path vendor/bundle --without development')
 
 def db_migrate():
@@ -43,9 +47,13 @@ def db_migrate():
 def start():
   with cd(CURRENT_DIR):
     run('RAILS_ENV=production bundle exec rails s -b 0.0.0.0 -d', pty=False)
-    run('RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L log/sidekiq.log -P tmp/pids/sidekiq.pid -d', pty=False)
+    run('RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L /var/log/app/sidekiq.log -P tmp/pids/sidekiq.pid -d', pty=False)
 
 def stop():
   with cd(CURRENT_DIR):
     run('RAILS_ENV=production bundle exec sidekiqctl stop tmp/pids/sidekiq.pid', warn_only=True)
     run('cat tmp/pids/server.pid | xargs kill -9', warn_only=True)
+
+def cron():
+  with cd(CURRENT_DIR):
+    run('bundle exec whenever --update-crontab')
