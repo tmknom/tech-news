@@ -16,6 +16,20 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# カバレッジ取得サービス用(https://coveralls.io/)
+if ENV['COVERALLS_REPO_TOKEN']
+  require 'coveralls'
+  Coveralls.wear!
+end
+
+# HTTP 通信のテストデータの生成＆モック化するための設定
+# https://github.com/vcr/vcr
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/fixtures'
+  config.hook_into :webmock
+end
+
 RSpec.configure do |config|
   # FactoryGirlの省略表記ができるように
   # https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md#configure-your-test-suite
@@ -93,11 +107,4 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-end
-
-# HTTP 通信のテストデータの生成＆モック化するための設定
-# https://github.com/vcr/vcr
-VCR.configure do |config|
-  config.cassette_library_dir = 'spec/fixtures'
-  config.hook_into :webmock
 end
