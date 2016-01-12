@@ -1,5 +1,10 @@
 # tech-news
 
+[![Circle CI](https://circleci.com/gh/tmknom/tech-news.svg?style=svg)](https://circleci.com/gh/tmknom/tech-news)
+[![Coverage Status](https://coveralls.io/repos/tmknom/tech-news/badge.svg?branch=feature%2Fsetting-circle-ci&service=github)](https://coveralls.io/github/tmknom/tech-news?branch=feature%2Fsetting-circle-ci)
+[![Dependency Status](https://gemnasium.com/tmknom/tech-news.svg)](https://gemnasium.com/tmknom/tech-news)
+
+
 ## セットアップ
 
 ```bash
