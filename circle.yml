@@ -1,0 +1,24 @@
+machine:
+  ruby:
+    version: 2.3.0
+
+  timezone:
+    Asia/Tokyo
+
+
+dependencies:
+  pre:
+    - rvm install 2.3.0
+
+  cache_directories:
+    - vendor/bundle
+
+  override:
+    - bundle install --path vendor/bundle --without development
+
+
+test:
+  override:
+    # rspec実行
+    - bundle exec rspec
+
