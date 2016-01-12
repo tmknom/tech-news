@@ -12,6 +12,7 @@ group :test do
   gem 'factory_girl_rails' # Fixtureを簡単に定義できるようにする
   gem 'webmock' # HTTP通信をモック化する
   gem 'vcr' # 一回目のHTTP通信から自動的にFixtureを作成し、二回目以降はFixtureを参照する
+  gem 'coveralls', require: false # カバレッジ取得サービス用(https://coveralls.io/)
 end
 
 group :development do
