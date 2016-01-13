@@ -14,11 +14,11 @@ def deploy():
 def execute_deploy():
   stop()
   initialize_dir()
-  env()
   clone()
   symlink()
   bundle_install()
   db_migrate()
+  env()
   start()
   cron()
 
