@@ -66,3 +66,16 @@ def stop():
 def cron():
   with cd(CURRENT_DIR):
     run('bundle exec whenever --update-crontab')
+
+DEFAULT_SSH_PORT = 37934
+@task
+def set_sshd():
+  pub_key = local('cat provisioning/tech-news.pem.pub', capture=True)
+  run('echo %s >> /home/ec2-user/.ssh/authorized_keys' % (pub_key))
+  sudo("sed -i 's/^#Port\s\+22/Port %s/' /etc/ssh/sshd_config"  % (DEFAULT_SSH_PORT) )
+  sudo("sed -i.bak 's/^#PermitRootLogin\s\+yes/PermitRootLogin no/' /etc/ssh/sshd_config")
+  sudo("sed -i 's/^#PubkeyAuthentication\s\+yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config")
+  sudo("sed -i 's/^PasswordAuthentication\s\+yes/PasswordAuthentication no/' /etc/ssh/sshd_config")
+  sudo("sshd -t")
+  sudo("service sshd reload")
+  sudo("ps -fea | grep sshd")
