@@ -5,6 +5,7 @@ yum install -y gcc openssl-devel libyaml-devel libffi-devel readline-devel zlib-
 yum install -y git
 yum install -y sqlite-devel
 yum install -y nodejs
+yum install -y gcc-c++
 
 # rbenv + ruby-build
 git clone https://github.com/rbenv/rbenv.git /opt/.rbenv
