@@ -16,6 +16,8 @@
 #
 
 class Article < ActiveRecord::Base
+  has_one :rating
+
   def bookmarked_at
     self[:bookmarked_at].in_time_zone('Tokyo')
   end
