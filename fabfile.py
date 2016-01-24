@@ -51,6 +51,7 @@ def bundle_install():
 
 def db_migrate():
   with cd(CURRENT_DIR):
+    run('RAILS_ENV=production bundle exec rake db:create')
     run('RAILS_ENV=production bundle exec rake db:migrate')
 
 def start():
