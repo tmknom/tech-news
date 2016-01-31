@@ -67,15 +67,20 @@ def cron():
   with cd(CURRENT_DIR):
     run('bundle exec whenever --update-crontab')
 
-DEFAULT_SSH_PORT = 37934
 @task
-def set_sshd():
-  pub_key = local('cat provisioning/tech-news.pem.pub', capture=True)
-  run('echo %s >> /home/ec2-user/.ssh/authorized_keys' % (pub_key))
-  sudo("sed -i 's/^#Port\s\+22/Port %s/' /etc/ssh/sshd_config"  % (DEFAULT_SSH_PORT) )
-  sudo("sed -i.bak 's/^#PermitRootLogin\s\+yes/PermitRootLogin no/' /etc/ssh/sshd_config")
-  sudo("sed -i 's/^#PubkeyAuthentication\s\+yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config")
-  sudo("sed -i 's/^PasswordAuthentication\s\+yes/PasswordAuthentication no/' /etc/ssh/sshd_config")
-  sudo("sshd -t")
-  sudo("service sshd reload")
-  sudo("ps -fea | grep sshd")
+def init_env():
+  set_remote_env('PRODUCTION_DATABASE_HOST')
+  set_remote_env('PRODUCTION_DATABASE_PORT')
+  set_remote_env('PRODUCTION_DATABASE_DB')
+  set_remote_env('PRODUCTION_DATABASE_USER')
+  set_remote_env('PRODUCTION_DATABASE_PASSWORD')
+
+def set_remote_env(key):
+  value = get_local_env(key)
+  sudo('echo "export %s=\'%s\'" >> %s' % (key, value, BASH_PROFILE), user='ec2-user')
+
+def get_local_env(key):
+  return local('echo $%s' % (key), capture=True)
+
+BASH_PROFILE = '/home/ec2-user/.bash_profile'
+
