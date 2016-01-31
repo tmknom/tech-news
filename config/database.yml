@@ -53,7 +53,8 @@ test:
 #
 production:
   <<: *default
-  database: production_db
-  username: production_user
-  password: production_password
-  #password: <%= ENV['TECH-NEWS_DATABASE_PASSWORD'] %>
+  host: <%= ENV['PRODUCTION_DATABASE_HOST'] %>
+  port: <%= ENV['PRODUCTION_DATABASE_PORT'] %>
+  database: <%= ENV['PRODUCTION_DATABASE_DB'] %>
+  username: <%= ENV['PRODUCTION_DATABASE_USER'] %>
+  password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
