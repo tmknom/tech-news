@@ -26,9 +26,9 @@ deployment:
   production:
     branch: master
     commands:
-      - fab deploy -f fabfile.py -H $PRODUCTION_HOST -u $SSH_USER_NAME --port=$SSH_PORT > $CIRCLE_ARTIFACTS/deploy.log
-
+      - aws deploy create-deployment --region $REGION --application-name $APPLICATION_NAME --deployment-group-name $DEPLOYMENT_GROUP_NAME --github-location commitId=$CIRCLE_SHA1,repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
   staging:
     branch: develop
     commands:
-      - fab deploy -f fabfile.py -H $PRODUCTION_HOST -u $SSH_USER_NAME --port=$SSH_PORT > $CIRCLE_ARTIFACTS/deploy.log
+      - aws deploy create-deployment --region $REGION --application-name $APPLICATION_NAME --deployment-group-name $DEPLOYMENT_GROUP_NAME --github-location commitId=$CIRCLE_SHA1,repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+
