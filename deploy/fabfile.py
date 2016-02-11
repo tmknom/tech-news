@@ -51,10 +51,14 @@ def bundle_install():
 
 def db_migrate():
   with lcd(CURRENT_DIR):
-    local('RAILS_ENV=production bundle exec rake db:migrate')
+    local('source %s/.bash_profile && RAILS_ENV=production bundle exec rake db:migrate' % (HOME_DIR))
 
 def set_secret_key_base():
-  secret_key_base = local('printenv SECRET_KEY_BASE', capture=True)
+  try:
+    secret_key_base = local('source %s/.bash_profile && printenv SECRET_KEY_BASE' % (HOME_DIR), capture=True)
+  except:
+    secret_key_base = None
+
   if not secret_key_base:
     with lcd(CURRENT_DIR):
       secret_key_base = local('RAILS_ENV=production bundle exec rake secret')
