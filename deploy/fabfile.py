@@ -46,7 +46,7 @@ def after_install():
   set_cron()
 
 def bundle_install():
-  local('bundle install --path %s/vendor/bundle --without development' % (HOME_DIR))
+  local('bundle install --gemfile=%s/Gemfile --path %s/vendor/bundle --without development --frozen' % (CURRENT_DIR, HOME_DIR))
 
 def db_migrate():
   local('RAILS_ENV=production bundle exec rake db:migrate')

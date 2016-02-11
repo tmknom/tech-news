@@ -3,6 +3,10 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/current/
+permissions:
+  - object: /home/ec2-user/current
+    owner: ec2-user
+    group: ec2-user
 hooks:
   BeforeInstall:
     - location: deploy/before_install.sh
