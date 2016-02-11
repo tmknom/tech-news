@@ -67,20 +67,20 @@ def set_secret_key_base():
 
   if not secret_key_base:
     with lcd(CURRENT_DIR):
-      secret_key_base = local('RAILS_ENV=production bundle exec rake secret', capture=True)
+      secret_key_base = local('source %s/.bash_profile && RAILS_ENV=production bundle exec rake secret' % (HOME_DIR), capture=True)
       local('echo "export SECRET_KEY_BASE=%s" >> %s/.bash_profile' % (secret_key_base, HOME_DIR))
       local('source %s/.bash_profile' % (HOME_DIR))
 
 def set_cron():
   with lcd(CURRENT_DIR):
-    local('RAILS_ENV=production bundle exec whenever --update-crontab')
+    local('source %s/.bash_profile && RAILS_ENV=production bundle exec whenever --update-crontab' % (HOME_DIR))
 
 
 @task
 def application_start():
   with lcd(CURRENT_DIR):
     local('source %s/.bash_profile && RAILS_ENV=production bundle exec rails s -b 0.0.0.0 -P %s/server.pid -d' % (HOME_DIR, PID_DIR))
-    local('RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L /var/log/app/sidekiq.log -P %s/sidekiq.pid -d' % (PID_DIR))
+    local('source %s/.bash_profile && RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L /var/log/app/sidekiq.log -P %s/sidekiq.pid -d' % (HOME_DIR, PID_DIR))
 
 @task
 def validate_service():
