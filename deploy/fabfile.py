@@ -46,26 +46,31 @@ def after_install():
   set_cron()
 
 def bundle_install():
-  local('bundle install --gemfile=%s/Gemfile --path %s/vendor/bundle --without development --frozen' % (CURRENT_DIR, HOME_DIR))
+  with lcd(CURRENT_DIR):
+    local('bundle install --path %s/vendor/bundle --without development --frozen' % (HOME_DIR))
 
 def db_migrate():
-  local('RAILS_ENV=production bundle exec rake db:migrate')
+  with lcd(CURRENT_DIR):
+    local('RAILS_ENV=production bundle exec rake db:migrate')
 
 def set_secret_key_base():
   secret_key_base = local('printenv SECRET_KEY_BASE', capture=True)
   if not secret_key_base:
-    secret_key_base = local('RAILS_ENV=production bundle exec rake secret')
-    local('echo "export SECRET_KEY_BASE=%s" >> %s/.bash_profile' % (secret_key_base, HOME_DIR))
-    local('source %s/.bash_profile' % (HOME_DIR))
+    with lcd(CURRENT_DIR):
+      secret_key_base = local('RAILS_ENV=production bundle exec rake secret')
+      local('echo "export SECRET_KEY_BASE=%s" >> %s/.bash_profile' % (secret_key_base, HOME_DIR))
+      local('source %s/.bash_profile' % (HOME_DIR))
 
 def set_cron():
-  local('RAILS_ENV=production bundle exec whenever --update-crontab')
+  with lcd(CURRENT_DIR):
+    local('RAILS_ENV=production bundle exec whenever --update-crontab')
 
 
 @task
 def application_start():
-  local('RAILS_ENV=production bundle exec rails s -b 0.0.0.0 -P %s/server.pid -d' % (PID_DIR))
-  local('RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L /var/log/app/sidekiq.log -P %s/sidekiq.pid -d' % (PID_DIR))
+  with lcd(CURRENT_DIR):
+    local('RAILS_ENV=production bundle exec rails s -b 0.0.0.0 -P %s/server.pid -d' % (PID_DIR))
+    local('RAILS_ENV=production bundle exec sidekiq -q default -q rss -q rating -L /var/log/app/sidekiq.log -P %s/sidekiq.pid -d' % (PID_DIR))
 
 @task
 def validate_service():
