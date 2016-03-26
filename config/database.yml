@@ -57,5 +57,5 @@ production:
   host: <%= ENV['DATABASE_HOST'] %>
   port: <%= ENV['DATABASE_PORT'] %>
   database: <%= ENV['DATABASE_DB'] %>
-  username: <%= ENV['DATABASE_MASTER_USER_NAME'] %>
-  password: <%= ENV['DATABASE_MASTER_USER_PASSWORD'] %>
+  username: <%= ENV['DATABASE_USER_NAME'] %>
+  password: <%= ENV['DATABASE_USER_PASSWORD'] %>
