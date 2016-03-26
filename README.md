@@ -17,7 +17,13 @@ RAILS_ENV=production bundle exec rake db:migrate
 ## デプロイ
 
 ```bash
-time fab deploy -u <user> -i ~/.ssh/aws/initialize.pem -H <ip_address>
+time fab deploy -u <user> -i <key> -H <ip_address>
+```
+
+## EC2インスタンスセットアップ
+
+```bash
+fab init_env -u <user> -i <key> --port=<port> -H <ip_address>
 ```
 
 ## Rakeタスク
