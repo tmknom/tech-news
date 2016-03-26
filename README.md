@@ -26,6 +26,12 @@ time fab deploy -u <user> -i <key> -H <ip_address>
 fab init_env -u <user> -i <key> --port=<port> -H <ip_address>
 ```
 
+## データベースセットアップ
+
+```bash
+fab init_db -u <user> -i <key> --port=<port> -H <ip_address>
+```
+
 ## Rakeタスク
 
 ### バッチタスク
