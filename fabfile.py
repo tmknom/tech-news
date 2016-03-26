@@ -69,11 +69,11 @@ def cron():
 
 @task
 def init_env():
-  set_remote_env('PRODUCTION_DATABASE_HOST')
-  set_remote_env('PRODUCTION_DATABASE_PORT')
-  set_remote_env('PRODUCTION_DATABASE_DB')
-  set_remote_env('PRODUCTION_DATABASE_USER')
-  set_remote_env('PRODUCTION_DATABASE_PASSWORD')
+  set_remote_env('DATABASE_HOST')
+  set_remote_env('DATABASE_PORT')
+  set_remote_env('DATABASE_DB')
+  set_remote_env('DATABASE_MASTER_USER_NAME')
+  set_remote_env('DATABASE_MASTER_USER_PASSWORD')
 
 def set_remote_env(key):
   value = get_local_env(key)
