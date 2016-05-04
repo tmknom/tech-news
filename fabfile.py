@@ -11,11 +11,13 @@ PRODUCTION = 'Production'
 
 @task
 def deploy_production(branch='master'):
+    '''Production 環境へデプロイ'''
     deploy(branch, PRODUCTION)
 
 
 @task
 def deploy_administration(branch='master'):
+    '''Administration 環境へデプロイ'''
     deploy(branch, ADMINISTRATION)
 
 
@@ -54,6 +56,7 @@ def get_recent_commit_id(branch):
 
 @task
 def init_db():
+    '''RDS にデータベースとユーザを作成'''
     create_user()
     create_db()
 
@@ -88,6 +91,7 @@ def execute_sql(user_name, password, sql):
 
 @task
 def init_env():
+    '''DB 接続するための環境変数を定義'''
     set_remote_env('DATABASE_HOST')
     set_remote_env('DATABASE_PORT')
     set_remote_env('DATABASE_DB')
@@ -105,3 +109,9 @@ def get_local_env(key):
 
 
 BASH_PROFILE = '/home/ec2-user/.bash_profile'
+
+
+@task
+def cleanup_code_deploy():
+    '''CodeDeploy のゴミを削除する'''
+    sudo('rm -Rf /opt/codedeploy-agent/deployment-root/*')
