@@ -57,6 +57,7 @@ def get_recent_commit_id(branch):
 @task
 def init_db():
     '''RDS にデータベースとユーザを作成'''
+    init_fabric()
     create_user()
     create_db()
 
@@ -92,6 +93,7 @@ def execute_sql(user_name, password, sql):
 @task
 def init_env():
     '''DB 接続するための環境変数を定義'''
+    init_fabric()
     set_remote_env('DATABASE_HOST')
     set_remote_env('DATABASE_PORT')
     set_remote_env('DATABASE_DB')
@@ -115,4 +117,11 @@ BASH_RC = '/home/ec2-user/.bashrc'
 @task
 def cleanup_code_deploy():
     '''CodeDeploy のゴミを削除する'''
+    init_fabric()
     sudo('rm -Rf /opt/codedeploy-agent/deployment-root/*')
+
+
+def init_fabric():
+    env.user = get_local_env('SSH_USER_NAME')
+    env.port = get_local_env('SSH_PORT')
+    env.key_filename = [get_local_env('SSH_PRIVATE_KEY_FULL_PATH')]
