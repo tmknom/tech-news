@@ -97,18 +97,19 @@ def init_env():
     set_remote_env('DATABASE_DB')
     set_remote_env('DATABASE_USER_NAME')
     set_remote_env('DATABASE_USER_PASSWORD')
+    sudo('source %s' % (BASH_RC), user='ec2-user')
 
 
 def set_remote_env(key):
     value = get_local_env(key)
-    sudo('echo "export %s=\'%s\'" >> %s' % (key, value, BASH_PROFILE), user='ec2-user')
+    sudo('echo "export %s=\'%s\'" >> %s' % (key, value, BASH_RC), user='ec2-user')
 
 
 def get_local_env(key):
     return local('echo $%s' % (key), capture=True)
 
 
-BASH_PROFILE = '/home/ec2-user/.bash_profile'
+BASH_RC = '/home/ec2-user/.bashrc'
 
 
 @task
