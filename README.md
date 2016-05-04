@@ -35,19 +35,19 @@ fab deploy_administration
 CodeDeploy が以上終了した場合に使う。
 
 ```bash
-fab cleanup_deploy_code -u <user> -i <key> --port=<port> -H <ip_address>
+fab cleanup_code_deploy -H <ip_address>
 ```
 
 ## EC2インスタンスセットアップ
 
 ```bash
-fab init_env -u <user> -i <key> --port=<port> -H <ip_address>
+fab init_env -H <ip_address>
 ```
 
 ## データベースセットアップ
 
 ```bash
-fab init_db -u <user> -i <key> --port=<port> -H <ip_address>
+fab init_db -H <ip_address>
 ```
 
 ## Rakeタスク
@@ -162,3 +162,19 @@ RAILS_ENV=production bundle exec whenever --update-crontab
 RAILS_ENV=production bundle exec whenever --clear-crontab
 ```
 
+## .envrc
+
+ローカルの環境変数の設定はdirenvを使用する。
+envrc.example を参考に設定する。
+
+### 設定方法
+
+```bash
+direnv edit .
+```
+
+### 設定内容
+
+```bash
+cat envrc.example
+```

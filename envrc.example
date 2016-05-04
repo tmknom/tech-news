@@ -1,0 +1,13 @@
+export SSH_PORT='xxxx'
+export SSH_USER_NAME='xxxx'
+export SSH_PRIVATE_KEY_FULL_PATH='xxxx'
+
+export DATABASE_HOST='xxxx'
+export DATABASE_PORT='xxxx'
+
+export DATABASE_DB='xxxx'
+export DATABASE_USER_NAME='xxxx'
+export DATABASE_USER_PASSWORD='xxxxxxxx'
+
+export DATABASE_MASTER_USER_NAME='xxxx'
+export DATABASE_MASTER_USER_PASSWORD='xxxx'
