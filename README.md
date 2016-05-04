@@ -16,8 +16,26 @@ RAILS_ENV=production bundle exec rake db:migrate
 
 ## デプロイ
 
+CodeDeploy経由でデプロイする
+
+### Production 環境へデプロイ
+
 ```bash
-time fab deploy -u <user> -i <key> -H <ip_address>
+fab deploy_production
+```
+
+### Administration 環境へデプロイ
+
+```bash
+fab deploy_administration
+```
+
+### CodeDeploy のゴミの削除
+
+CodeDeploy が以上終了した場合に使う。
+
+```bash
+fab cleanup_deploy_code -u <user> -i <key> --port=<port> -H <ip_address>
 ```
 
 ## EC2インスタンスセットアップ
