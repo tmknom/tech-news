@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 ### 追加インストール
+gem 'unicorn' # アプリケーションサーバ
+gem 'foreman' # プロセス
 gem 'whenever', :require => false # crontab管理
 gem 'sidekiq' # 非同期処理
 gem 'simple-rss', '~> 1.3', '>= 1.3.1' # RSSパーサ
