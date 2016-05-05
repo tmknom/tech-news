@@ -5,7 +5,7 @@ from fabric.api import *
 APPLICATION_NAME = 'tech-news'
 REPOSITORY = 'tmknom/tech-news'
 
-ADMINISTRATION = 'Administration'
+TESTING = 'Testing'
 PRODUCTION = 'Production'
 
 
@@ -16,9 +16,9 @@ def deploy_production(branch='master'):
 
 
 @task
-def deploy_administration(branch='master'):
-    '''Administration 環境へデプロイ'''
-    deploy(branch, ADMINISTRATION)
+def deploy_testing(branch='master'):
+    '''Testing 環境へデプロイ'''
+    deploy(branch, TESTING)
 
 
 def deploy(branch, environment):
