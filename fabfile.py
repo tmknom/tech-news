@@ -13,15 +13,15 @@ PRODUCTION = 'Production'
 @task
 def deploy_production(branch='master'):
     '''Production 環境へデプロイ :<branch>'''
-    if not confirm("Production 環境へデプロイします。本当に実行しますか？"):
+    if not confirm("%s ブランチを Production 環境へデプロイします。本当に実行しますか？" % (branch)):
         abort('実行を中止しました。')
     deploy(branch, PRODUCTION)
 
 
 @task
-def deploy_testing(branch='master'):
+def deploy_testing(branch=''):
     '''Testing 環境へデプロイ :<branch>'''
-    deploy(branch, TESTING)
+    deploy(get_branch(branch), TESTING)
 
 
 def deploy(branch, environment):
@@ -54,6 +54,18 @@ def get_default_region():
 
 def get_recent_commit_id(branch):
     command = 'git log -n 1 --format=%H ' + branch
+    result = local(command, capture=True)
+    return result
+
+
+def get_branch(branch):
+    if not branch:
+        return branch
+    return get_current_branch()
+
+
+def get_current_branch():
+    command = "git rev-parse --abbrev-ref HEAD"
     result = local(command, capture=True)
     return result
 
