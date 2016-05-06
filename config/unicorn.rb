@@ -12,11 +12,11 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 
 # PID
-pid "/home/ec2-user/tmp/pids/unicorn.pid"
+pid "/var/run/app/unicorn.pid"
 
 # リッスンするソケットの指定
 # ここではUNIXドメインソケットを指定している
-listen "/home/ec2-user/tmp/pids/unicorn.sock"
+listen "/var/run/app/unicorn.sock"
 
 # 標準出力、標準エラー出力のロギング
 stdout_path "/var/log/app/unicorn.stdout.log"

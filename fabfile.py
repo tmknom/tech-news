@@ -11,13 +11,13 @@ PRODUCTION = 'Production'
 
 @task
 def deploy_production(branch='master'):
-    '''Production 環境へデプロイ'''
+    '''Production 環境へデプロイ :<branch>'''
     deploy(branch, PRODUCTION)
 
 
 @task
 def deploy_testing(branch='master'):
-    '''Testing 環境へデプロイ'''
+    '''Testing 環境へデプロイ :<branch>'''
     deploy(branch, TESTING)
 
 
@@ -56,7 +56,7 @@ def get_recent_commit_id(branch):
 
 @task
 def init_db():
-    '''RDS にデータベースとユーザを作成'''
+    '''RDS にデータベースとユーザを作成 [-H <ip_address>]'''
     init_fabric()
     create_user()
     create_db()
@@ -92,7 +92,7 @@ def execute_sql(user_name, password, sql):
 
 @task
 def init_env():
-    '''DB 接続するための環境変数を定義'''
+    '''DB 接続するための環境変数を定義 [-H <ip_address>]'''
     init_fabric()
     set_remote_env('DATABASE_HOST')
     set_remote_env('DATABASE_PORT')
@@ -116,7 +116,7 @@ BASH_RC = '/home/ec2-user/.bashrc'
 
 @task
 def cleanup_code_deploy():
-    '''CodeDeploy のゴミを削除する'''
+    '''CodeDeploy のゴミを削除する [-H <ip_address>]'''
     init_fabric()
     sudo('rm -Rf /opt/codedeploy-agent/deployment-root/*')
 

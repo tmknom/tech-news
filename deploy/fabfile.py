@@ -5,7 +5,7 @@ from datetime import datetime
 HOME_DIR = '/home/ec2-user'
 RELEASES_DIR = HOME_DIR + '/releases'
 CURRENT_DIR = HOME_DIR + '/current'
-PID_DIR = HOME_DIR + '/tmp/pids'
+PID_DIR = '/var/run/app'
 APPLICATION_USER = 'ec2-user'
 
 
@@ -18,16 +18,8 @@ def application_stop():
 
 @task
 def before_install():
-    create_log_dir()
     create_release_dir()
-    create_pid_dir()
     create_bundle_config_dir()
-
-
-def create_log_dir():
-    local('mkdir -p /var/log/app')
-    local('chmod 777 /var/log/app')
-    local('chown %s:%s /var/log/app' % (APPLICATION_USER, APPLICATION_USER))
 
 
 def create_release_dir():
@@ -37,11 +29,6 @@ def create_release_dir():
     local('mkdir -p %s' % (release_dir))
     local('chown %s:%s %s' % (APPLICATION_USER, APPLICATION_USER, release_dir))
     local('ln -snf %s %s' % (release_dir, CURRENT_DIR))
-
-
-def create_pid_dir():
-    local('mkdir -p %s' % (PID_DIR))
-    local('chown %s:%s %s' % (APPLICATION_USER, APPLICATION_USER, PID_DIR))
 
 
 def create_bundle_config_dir():
