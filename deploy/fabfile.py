@@ -13,9 +13,24 @@ BUNDLE_COMMAND = 'source %s/.bash_profile && RAILS_ENV=production /opt/.rbenv/sh
 
 @task
 def application_stop():
-    with lcd(CURRENT_DIR):
-        local("%s exec sidekiqctl stop %s/sidekiq.pid" % (BUNDLE_COMMAND, PID_DIR))
-        local('cat %s/unicorn.pid | xargs kill -9' % (PID_DIR))
+    stop_unicorn()
+    stop_sidekiq()
+
+
+def stop_unicorn():
+    try:
+        with lcd(CURRENT_DIR):
+            local('cat %s/unicorn.pid | xargs kill -9' % (PID_DIR))
+    except:
+        print('unicorn is already stopped...')
+
+
+def stop_sidekiq():
+    try:
+        with lcd(CURRENT_DIR):
+            local("%s exec sidekiqctl stop %s/sidekiq.pid" % (BUNDLE_COMMAND, PID_DIR))
+    except:
+        print('sidekiq is already stopped...')
 
 
 @task
