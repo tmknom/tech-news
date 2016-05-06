@@ -34,6 +34,7 @@ def create_deployment(commit_id, environment):
 
 def execute_create_deployment(commit_id, deployment_group_name, region, application_name, repository):
     command = "aws deploy create-deployment " \
+              + " --ignore-application-stop-failures " \
               + " --region %s " % (region) \
               + " --application-name %s " % (application_name.lower()) \
               + " --deployment-group-name %s " % (deployment_group_name.lower()) \
