@@ -64,11 +64,8 @@ def set_cron():
 @task
 def application_start():
     with lcd(CURRENT_DIR):
-        # local('source %s/.bash_profile && RAILS_ENV=production bundle exec rails s -b 0.0.0.0 -P %s/server.pid -d'
-        #       % (HOME_DIR, PID_DIR))
         local('%s exec unicorn -c ./config/unicorn.rb -D' % (BUNDLE_COMMAND))
-        local('%s exec sidekiq -q default -q rss -q rating -L /var/log/app/sidekiq.log -P %s/sidekiq.pid -d'
-              % (BUNDLE_COMMAND, PID_DIR))
+        local('%s exec sidekiq -C ./config/sidekiq.yml -d' % (BUNDLE_COMMAND))
 
 
 @task

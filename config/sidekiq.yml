@@ -1,0 +1,10 @@
+:verbose: false
+:daemon: true
+:pidfile: /var/run/app/sidekiq.pid
+:logfile: /var/log/app/sidekiq.log
+:concurrency:  25
+:retry: 3
+:queues:
+  - default
+  - rss
+  - rating
