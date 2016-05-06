@@ -1,6 +1,7 @@
 # -*- encoding:utf-8 -*-
 
 from fabric.api import *
+from fabric.contrib.console import *
 
 APPLICATION_NAME = 'tech-news'
 REPOSITORY = 'tmknom/tech-news'
@@ -12,6 +13,8 @@ PRODUCTION = 'Production'
 @task
 def deploy_production(branch='master'):
     '''Production 環境へデプロイ :<branch>'''
+    if not confirm("Production 環境へデプロイします。本当に実行しますか？"):
+        abort('実行を中止しました。')
     deploy(branch, PRODUCTION)
 
 
@@ -34,6 +37,7 @@ def create_deployment(commit_id, environment):
 
 def execute_create_deployment(commit_id, deployment_group_name, region, application_name, repository):
     command = "aws deploy create-deployment " \
+              + " --ignore-application-stop-failures " \
               + " --region %s " % (region) \
               + " --application-name %s " % (application_name.lower()) \
               + " --deployment-group-name %s " % (deployment_group_name.lower()) \
@@ -57,6 +61,8 @@ def get_recent_commit_id(branch):
 @task
 def init_db():
     '''RDS にデータベースとユーザを作成 [-H <ip_address>]'''
+    if not confirm("RDS にデータベースとユーザを作成します。本当に実行しますか？"):
+        abort('実行を中止しました。')
     init_fabric()
     create_user()
     create_db()

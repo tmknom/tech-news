@@ -26,9 +26,4 @@ deployment:
   production:
     branch: master
     commands:
-      - aws deploy create-deployment --region $REGION --application-name $APPLICATION_NAME --deployment-group-name $DEPLOYMENT_GROUP_NAME --github-location commitId=$CIRCLE_SHA1,repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-  staging:
-    branch: develop
-    commands:
-      - aws deploy create-deployment --region $REGION --application-name $APPLICATION_NAME --deployment-group-name $DEPLOYMENT_GROUP_NAME --github-location commitId=$CIRCLE_SHA1,repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-
+      - aws deploy create-deployment --ignore-application-stop-failures --region $REGION --application-name $APPLICATION_NAME --deployment-group-name $DEPLOYMENT_GROUP_NAME --github-location commitId=$CIRCLE_SHA1,repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
