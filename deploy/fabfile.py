@@ -5,7 +5,7 @@ from datetime import datetime
 HOME_DIR = '/home/ec2-user'
 RELEASES_DIR = HOME_DIR + '/releases'
 CURRENT_DIR = HOME_DIR + '/current'
-PID_DIR = HOME_DIR + '/tmp/pids'
+PID_DIR = '/var/run/app'
 APPLICATION_USER = 'ec2-user'
 
 
