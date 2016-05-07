@@ -1,6 +1,6 @@
 Rails.application.configure do
   # ログ出力先を変更
-  config.paths['log'] = '/var/log/app/production.log'
+  config.paths['log'] = '/var/log/app/rails.log'
 
   # Sidekiqのログが多すぎるので、抑制する
   # https://github.com/mperham/sidekiq/wiki/Logging#default-logger-and-verboseness
