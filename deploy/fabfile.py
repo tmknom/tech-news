@@ -44,8 +44,10 @@ def create_release_dir():
     current_date = datetime.now().strftime("%Y%m%d_%H%M%S")
     release_dir = RELEASES_DIR + '/' + current_date + '_' + deployment_id
     local('mkdir -p %s' % (release_dir))
+    local('chown %s:%s %s' % (APPLICATION_USER, APPLICATION_USER, RELEASES_DIR))
     local('chown %s:%s %s' % (APPLICATION_USER, APPLICATION_USER, release_dir))
     local('ln -snf %s %s' % (release_dir, CURRENT_DIR))
+    local('chown -h %s:%s %s' % (APPLICATION_USER, APPLICATION_USER, CURRENT_DIR))
 
 
 def create_bundle_config_dir():
@@ -63,7 +65,7 @@ def after_install():
 
 def bundle_install():
     with lcd(CURRENT_DIR):
-        local('bundle install --path %s/vendor/bundle --without development --frozen' % (HOME_DIR))
+        local('%s install --path %s/vendor/bundle --without development --frozen' % (BUNDLE_COMMAND, HOME_DIR))
 
 
 def db_migrate():
