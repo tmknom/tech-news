@@ -2,11 +2,11 @@
 from fabric.api import *
 from datetime import datetime
 
-HOME_DIR = '/home/ec2-user'
+HOME_DIR = '/var/www'
 RELEASES_DIR = HOME_DIR + '/releases'
 CURRENT_DIR = HOME_DIR + '/current'
 PID_DIR = '/var/run/app'
-APPLICATION_USER = 'ec2-user'
+APPLICATION_USER = 'rails'
 
 BUNDLE_COMMAND = 'source %s/.bash_profile && RAILS_ENV=production /opt/.rbenv/shims/bundle' % (HOME_DIR)
 

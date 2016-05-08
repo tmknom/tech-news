@@ -1,1 +1,1 @@
-web: RAILS_ENV=production /home/ec2-user/current/bin/bundle exec unicorn -c ./config/unicorn.rb
+web: RAILS_ENV=production /var/www/current/bin/bundle exec unicorn -c ./config/unicorn.rb
