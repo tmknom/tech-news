@@ -2,11 +2,11 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/current/
+    destination: /var/www/current/
 permissions:
-  - object: /home/ec2-user/current
-    owner: ec2-user
-    group: ec2-user
+  - object: /var/www/current
+    owner: rails
+    group: rails
 hooks:
   BeforeInstall:
     - location: deploy/before_install.sh
@@ -15,17 +15,17 @@ hooks:
   AfterInstall:
     - location: deploy/after_install.sh
       timeout: 1800
-      runas: ec2-user
+      runas: rails
   ApplicationStart:
     - location: deploy/application_start.sh
       timeout: 300
-      runas: ec2-user
+      runas: rails
   ApplicationStop:
     - location: deploy/application_stop.sh
       timeout: 300
-      runas: ec2-user
+      runas: rails
   ValidateService:
     - location: deploy/validate_service.sh
       timeout: 300
-      runas: ec2-user
+      runas: rails
 
