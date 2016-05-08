@@ -7,6 +7,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, path: "provisioning/provision.sh"
 
+  # Vagrantが遅いのでその対策
+  # http://qiita.com/itopan88/items/06d7c7a08f2d681b042a
+  #
+  # 初めて実行する場合は下記のスクリプトを実行
+  # $ sudo provisioning/install_vagrant_sudoers.sh
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+
   config.vm.provider :virtualbox do |v|
     # デフォルトのメモリサイズだとメモリが足りないためMySQL5.6が動かない
     # http://nekopunch.hatenablog.com/entry/2014/03/22/020507
