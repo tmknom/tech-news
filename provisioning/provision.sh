@@ -51,3 +51,9 @@ rpm -iv http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 yum --enablerepo=remi install -y redis
 chkconfig redis on
 service redis start
+
+# app
+mkdir /var/log/app
+chmod 777 /var/log/app
+mkdir /var/run/app
+chmod 777 /var/run/app
