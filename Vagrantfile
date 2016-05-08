@@ -9,6 +9,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Vagrantが遅いのでその対策
   # http://qiita.com/itopan88/items/06d7c7a08f2d681b042a
+  #
+  # 初めて実行する場合は下記のスクリプトを実行
+  # $ sudo provisioning/install_vagrant_sudoers.sh
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
   config.vm.provider :virtualbox do |v|
