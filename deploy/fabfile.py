@@ -8,8 +8,6 @@ CURRENT_DIR = HOME_DIR + '/current'
 PID_DIR = '/var/run/app'
 APPLICATION_USER = 'rails'
 
-BUNDLE_COMMAND = 'source %s/.bash_profile && RAILS_ENV=production /opt/.rbenv/shims/bundle' % (HOME_DIR)
-
 
 @task
 def application_stop():
@@ -19,16 +17,14 @@ def application_stop():
 
 def stop_unicorn():
     try:
-        with lcd(CURRENT_DIR):
-            local('cat %s/unicorn.pid | xargs kill -9' % (PID_DIR))
+        local_su('cat %s/unicorn.pid | xargs kill -9' % (PID_DIR), CURRENT_DIR)
     except:
         print('unicorn is already stopped...')
 
 
 def stop_sidekiq():
     try:
-        with lcd(CURRENT_DIR):
-            local("%s exec sidekiqctl stop %s/sidekiq.pid" % (BUNDLE_COMMAND, PID_DIR))
+        bundle('exec sidekiqctl stop %s/sidekiq.pid' % (PID_DIR))
     except:
         print('sidekiq is already stopped...')
 
@@ -64,25 +60,21 @@ def after_install():
 
 
 def bundle_install():
-    with lcd(CURRENT_DIR):
-        local('%s install --path %s/vendor/bundle --without development --frozen' % (BUNDLE_COMMAND, HOME_DIR))
+    bundle('install --path %s/vendor/bundle --without development --frozen' % (HOME_DIR))
 
 
 def db_migrate():
-    with lcd(CURRENT_DIR):
-        local('%s exec rake db:migrate' % (BUNDLE_COMMAND))
+    bundle('exec rake db:migrate')
 
 
 def set_cron():
-    with lcd(CURRENT_DIR):
-        local('%s exec whenever --update-crontab' % (BUNDLE_COMMAND))
+    bundle('exec whenever --update-crontab')
 
 
 @task
 def application_start():
-    with lcd(CURRENT_DIR):
-        local('%s exec unicorn -c ./config/unicorn.rb -D' % (BUNDLE_COMMAND))
-        local('%s exec sidekiq -C ./config/sidekiq.yml -d' % (BUNDLE_COMMAND))
+    bundle('exec unicorn -c ./config/unicorn.rb -D')
+    bundle('exec sidekiq -C ./config/sidekiq.yml -d')
 
 
 @task
@@ -90,3 +82,12 @@ def validate_service():
     # AWS CodeDeployで/scripts 以下を更新しても古いスクリプトが動く時の対策
     # http://note.next-season.net/aws/778
     pass
+
+
+def bundle(bundle_option):
+    command = 'source %s/.bash_profile && RAILS_ENV=production /opt/.rbenv/shims/bundle %s' % (HOME_DIR, bundle_option)
+    local_su(command, CURRENT_DIR)
+
+
+def local_su(command, lcd):
+    local("su -s /bin/bash - -l %s -c 'cd %s && %s' " % (APPLICATION_USER, lcd, command))
