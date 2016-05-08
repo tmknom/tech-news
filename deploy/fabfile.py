@@ -55,7 +55,7 @@ def create_bundle_config_dir():
 @task
 def after_install():
     bundle_install()
-    db_migrate()
+    # db_migrate()
     set_cron()
 
 
