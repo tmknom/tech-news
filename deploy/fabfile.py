@@ -85,7 +85,7 @@ def validate_service():
 
 
 def bundle(bundle_option):
-    command = 'source %s/.bash_profile && RAILS_ENV=production /opt/.rbenv/shims/bundle %s' % (HOME_DIR, bundle_option)
+    command = 'source %s/.bashrc && RAILS_ENV=production /opt/.rbenv/shims/bundle %s' % (HOME_DIR, bundle_option)
     local_su(command, CURRENT_DIR)
 
 
