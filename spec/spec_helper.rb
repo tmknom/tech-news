@@ -23,6 +23,10 @@ if ENV['COVERALLS_REPO_TOKEN']
   Coveralls.wear!
 end
 
+# 1系から2系に上がったタイミングでなぜか組み込み方法が変わったので対応
+# https://github.com/bblimke/webmock#rspec
+require 'webmock/rspec'
+
 # HTTP 通信のテストデータの生成＆モック化するための設定
 # https://github.com/vcr/vcr
 VCR.configure do |config|
