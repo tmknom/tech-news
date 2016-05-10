@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe RssGateway, type: :model do
+RSpec.describe Rss::RssGateway, type: :model do
 
   describe '#get' do
-    let!(:rss_gateway) { RssGateway.new }
+    let!(:rss_gateway) { Rss::RssGateway.new }
 
     it '正常系' do
       url = 'http://b.hatena.ne.jp/entrylist/it?sort=hot&threshold=30&mode=rss'
