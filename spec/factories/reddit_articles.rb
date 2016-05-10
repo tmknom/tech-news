@@ -18,7 +18,7 @@
 #
 
 FactoryGirl.define do
-  factory :reddit_article do
+  factory :reddit_article, class: Reddit::RedditArticle do
     sequence(:url) { |i| "https://www.google#{i}.co.jp/" }
     sequence(:title) { |i| "Google#{i}" }
     sequence(:media_url) { |i| "https://www.google#{i}.co.jp/example.gif" }
