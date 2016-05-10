@@ -10,7 +10,7 @@ RSpec.describe Rss::RssCrawlTask, type: :task do
       Rss::RssCrawlTask.new.run
       # キューにジョブが登録されたことを確認
       assert_enqueued_jobs 1
-      expect(enqueued_jobs.first[:job]).to eq RssCrawlJob
+      expect(enqueued_jobs.first[:job]).to eq Rss::RssCrawlJob
     end
   end
 
