@@ -3,7 +3,7 @@ class CreateRedditArticles < ActiveRecord::Migration
     create_table :reddit_articles, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci' do |t|
       t.string :url, null: false
       t.string :title, null: false
-      t.string :image_url, null: false
+      t.string :media_url, null: false
       t.string :description, null: false
 
       t.timestamps null: false
