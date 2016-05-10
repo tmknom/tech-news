@@ -40,10 +40,12 @@ ActiveRecord::Schema.define(version: 20160508145029) do
     t.string   "title",       limit: 255, null: false
     t.string   "media_url",   limit: 255, null: false
     t.string   "description", limit: 255, null: false
+    t.datetime "posted_at",               null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
+  add_index "reddit_articles", ["media_url"], name: "index_reddit_articles_on_media_url", unique: true, using: :btree
   add_index "reddit_articles", ["url"], name: "index_reddit_articles_on_url", unique: true, using: :btree
 
   add_foreign_key "ratings", "articles"

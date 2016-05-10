@@ -5,9 +5,11 @@ class CreateRedditArticles < ActiveRecord::Migration
       t.string :title, null: false
       t.string :media_url, null: false
       t.string :description, null: false
+      t.datetime :posted_at, null: false
 
       t.timestamps null: false
     end
     add_index :reddit_articles, :url, unique: true
+    add_index :reddit_articles, :media_url, unique: true
   end
 end

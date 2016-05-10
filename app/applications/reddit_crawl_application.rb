@@ -35,8 +35,8 @@ class RedditRssConverter
     title = rss_item.title.force_encoding('utf-8')
     url = rss_item.link.force_encoding('utf-8')
     description = rss_item.content.force_encoding('utf-8')
-    created_at = rss_item.updated.in_time_zone('Tokyo') # Time型
-    { Title: title, URL: url, Created: created_at, Description: description }
+    posted_at = rss_item.updated.in_time_zone('Tokyo') # Time型
+    { Title: title, URL: url, Posted: posted_at, Description: description }
     # Article.new(url: url, title: title, description: description, bookmarked_at: bookmarked_at)
   end
 end
