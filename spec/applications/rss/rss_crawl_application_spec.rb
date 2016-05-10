@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe RssCrawlApplication, type: :application do
-  let(:rss_crawl_application) { RssCrawlApplication.new }
+RSpec.describe Rss::RssCrawlApplication, type: :application do
+  let(:rss_crawl_application) { Rss::RssCrawlApplication.new }
 
 
   describe '#crawl' do
