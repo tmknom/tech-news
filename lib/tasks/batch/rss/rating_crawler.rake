@@ -1,5 +1,5 @@
 namespace :batch do
-  namespace :rating do
+  namespace :rss do
     desc 'はてブ数を取得'
     task :hatena_bookmark_count_crawl => :environment do
       Rss::HatenaBookmarkCountCrawlTask.new.run
