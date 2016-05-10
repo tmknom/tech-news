@@ -17,9 +17,9 @@
 
 require 'rails_helper'
 
-RSpec.describe ArticleQueryRepository, type: :model do
+RSpec.describe Rss::ArticleQueryRepository, type: :model do
 
-  let(:article_query_repository) { ArticleQueryRepository.new }
+  let(:article_query_repository) { Rss::ArticleQueryRepository.new }
 
   describe '#refer' do
     let!(:article) { create(:article) }

@@ -1,7 +1,7 @@
 class HatenaBookmarkCountCrawlApplication
   def initialize
     @hatena_bookmark_count_gateway = HatenaBookmarkCountGateway.new
-    @article_query_repository = ArticleQueryRepository.new
+    @article_query_repository = Rss::ArticleQueryRepository.new
     @rating_command_repository = RatingCommandRepository.new
   end
 

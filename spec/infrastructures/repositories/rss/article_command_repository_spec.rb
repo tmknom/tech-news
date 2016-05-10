@@ -17,9 +17,9 @@
 
 require 'rails_helper'
 
-RSpec.describe ArticleCommandRepository, type: :model do
+RSpec.describe Rss::ArticleCommandRepository, type: :model do
 
-  let(:article_command_repository) { ArticleCommandRepository.new }
+  let(:article_command_repository) { Rss::ArticleCommandRepository.new }
 
   describe '#save_if_not_exists' do
 

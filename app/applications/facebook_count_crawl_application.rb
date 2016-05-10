@@ -1,7 +1,7 @@
 class FacebookCountCrawlApplication
   def initialize
     @facebook_count_gateway = FacebookCountGateway.new
-    @article_query_repository = ArticleQueryRepository.new
+    @article_query_repository = Rss::ArticleQueryRepository.new
     @rating_command_repository = RatingCommandRepository.new
   end
 

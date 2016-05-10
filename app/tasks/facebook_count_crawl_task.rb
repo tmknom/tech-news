@@ -1,6 +1,6 @@
 class FacebookCountCrawlTask
   def initialize
-    @article_query_repository = ArticleQueryRepository.new
+    @article_query_repository = Rss::ArticleQueryRepository.new
   end
 
   def run
