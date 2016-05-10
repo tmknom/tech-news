@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe HatenaBookmarkCountCrawlApplication, type: :application do
-  let(:hatena_bookmark_count_crawl_application) { HatenaBookmarkCountCrawlApplication.new }
+RSpec.describe Rss::HatenaBookmarkCountCrawlApplication, type: :application do
+  let(:hatena_bookmark_count_crawl_application) { Rss::HatenaBookmarkCountCrawlApplication.new }
   let!(:rating) { create(:rating) }
 
   describe '#crawl' do

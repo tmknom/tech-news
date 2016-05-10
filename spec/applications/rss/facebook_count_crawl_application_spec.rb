@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe FacebookCountCrawlApplication, type: :application do
-  let(:facebook_count_crawl_application) { FacebookCountCrawlApplication.new }
+RSpec.describe Rss::FacebookCountCrawlApplication, type: :application do
+  let(:facebook_count_crawl_application) { Rss::FacebookCountCrawlApplication.new }
   let!(:rating) { create(:rating) }
 
   describe '#crawl' do
