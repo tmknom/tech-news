@@ -15,7 +15,7 @@ RSpec.describe Rss::HatenaBookmarkCountCrawlTask, type: :task do
       Rss::HatenaBookmarkCountCrawlTask.new.run
       # キューにジョブが登録されたことを確認
       assert_enqueued_jobs 3
-      expect(enqueued_jobs.first[:job]).to eq HatenaBookmarkCountCrawlJob
+      expect(enqueued_jobs.first[:job]).to eq Rss::HatenaBookmarkCountCrawlJob
     end
   end
 

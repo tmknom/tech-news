@@ -15,7 +15,7 @@ RSpec.describe Rss::FacebookCountCrawlTask, type: :task do
       Rss::FacebookCountCrawlTask.new.run
       # キューにジョブが登録されたことを確認
       assert_enqueued_jobs 3
-      expect(enqueued_jobs.first[:job]).to eq FacebookCountCrawlJob
+      expect(enqueued_jobs.first[:job]).to eq Rss::FacebookCountCrawlJob
     end
   end
 
