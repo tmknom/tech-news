@@ -1,5 +1,5 @@
 namespace :batch do
-  namespace :rss_crawler do
+  namespace :rss do
     desc 'はてブのRSSを取得'
     task :crawl => :environment do
       RssCrawlTask.new.run
