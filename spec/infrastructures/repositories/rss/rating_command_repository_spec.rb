@@ -21,9 +21,9 @@
 
 require 'rails_helper'
 
-RSpec.describe RatingCommandRepository, type: :model do
+RSpec.describe Rss::RatingCommandRepository, type: :model do
 
-  let(:rating_command_repository) { RatingCommandRepository.new }
+  let(:rating_command_repository) { Rss::RatingCommandRepository.new }
 
   describe '#save_if_not_exists' do
 
