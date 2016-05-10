@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe FacebookCountGateway, type: :model do
+RSpec.describe Rss::FacebookCountGateway, type: :model do
 
   describe '#get' do
-    let!(:facebook_count_gateway) { FacebookCountGateway.new }
+    let!(:facebook_count_gateway) { Rss::FacebookCountGateway.new }
 
     it '正常系' do
       url = 'http://www.yahoo.co.jp/'

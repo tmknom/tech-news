@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe HatenaBookmarkCountGateway, type: :model do
+RSpec.describe Rss::HatenaBookmarkCountGateway, type: :model do
 
   describe '#get' do
-    let!(:hatena_bookmark_count_gateway) { HatenaBookmarkCountGateway.new }
+    let!(:hatena_bookmark_count_gateway) { Rss::HatenaBookmarkCountGateway.new }
 
     it '正常系' do
       url = 'http://www.yahoo.co.jp/'
