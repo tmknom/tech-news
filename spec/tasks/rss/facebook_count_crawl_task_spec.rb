@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe FacebookCountCrawlTask, type: :task do
+RSpec.describe Rss::FacebookCountCrawlTask, type: :task do
   include ActiveJob::TestHelper
 
   let!(:ratings) do
@@ -12,7 +12,7 @@ RSpec.describe FacebookCountCrawlTask, type: :task do
       # キューにジョブが登録されていないことを確認
       assert_no_enqueued_jobs
       # 実行
-      FacebookCountCrawlTask.new.run
+      Rss::FacebookCountCrawlTask.new.run
       # キューにジョブが登録されたことを確認
       assert_enqueued_jobs 3
       expect(enqueued_jobs.first[:job]).to eq FacebookCountCrawlJob
