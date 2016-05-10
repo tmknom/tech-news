@@ -17,5 +17,7 @@
 #  index_reddit_articles_on_url        (url) UNIQUE
 #
 
-class RedditArticle < ActiveRecord::Base
+module Reddit
+  class RedditArticle < ActiveRecord::Base
+  end
 end
