@@ -1,7 +1,7 @@
 module Reddit
   class RedditCrawlApplication
     def initialize
-      @rss_gateway = RssGateway.new
+      @rss_gateway = Rss::RssGateway.new
       @reddit_rss_transformation = RedditRssTransformation.new
       @reddit_article_command_repository = RedditArticleCommandRepository.new
     end

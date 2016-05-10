@@ -11,7 +11,7 @@ RSpec.describe Reddit::RedditRssTransformation, type: :model do
       rss_items = {}
       url = 'https://www.reddit.com/r/gifs/hot/.rss'
       VCR.use_cassette 'rss/www.reddit.com.gif' do
-        rss_items = RssGateway.new.get url
+        rss_items = Rss::RssGateway.new.get url
       end
 
       # 実行
