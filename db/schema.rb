@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508145029) do
+ActiveRecord::Schema.define(version: 20160509021849) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "url",           limit: 255, null: false
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20160508145029) do
   end
 
   add_index "articles", ["url"], name: "index_articles_on_url", unique: true, using: :btree
+
+  create_table "media", force: :cascade do |t|
+    t.string   "url",        limit: 255, null: false
+    t.string   "source_url", limit: 255, null: false
+    t.string   "category",   limit: 64,  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "media", ["source_url"], name: "index_media_on_source_url", using: :btree
+  add_index "media", ["url"], name: "index_media_on_url", using: :btree
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "article_id",            limit: 4,             null: false
