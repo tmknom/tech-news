@@ -10,4 +10,5 @@
 #
 
 class RedditMedium < ActiveRecord::Base
+  CATEGORY_IMAGE = 'image'.freeze
 end
