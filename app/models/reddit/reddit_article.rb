@@ -16,5 +16,6 @@
 
 module Reddit
   class RedditArticle < ActiveRecord::Base
+    has_one :medium, foreign_key: 'url'
   end
 end
