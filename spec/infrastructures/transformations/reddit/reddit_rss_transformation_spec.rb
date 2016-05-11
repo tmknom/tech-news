@@ -26,4 +26,24 @@ RSpec.describe Reddit::RedditRssTransformation, type: :model do
     end
   end
 
+  describe '#transform_medium' do
+    it '正常系' do
+
+      # インパラをRSSから作成
+      rss_items = {}
+      url = 'https://www.reddit.com/r/gifs/hot/.rss'
+      VCR.use_cassette 'rss/www.reddit.com.gif' do
+        rss_items = Rss::RssGateway.new.get url
+      end
+
+      # 実行
+      medium = reddit_rss_transformation.transform_medium(rss_items[1])
+
+      # 確認
+      expect(medium.url).to eq 'http://i.imgur.com/QGbGlAf.gifv'
+      expect(medium.source_url).to eq 'https://www.reddit.com/r/gifs/comments/4ilapw/for_everyone_who_wanted_to_see_the_actual/'
+      expect(medium.category).to eq 'image'
+    end
+  end
+
 end
