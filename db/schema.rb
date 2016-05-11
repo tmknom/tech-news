@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509021849) do
+ActiveRecord::Schema.define(version: 20160509070344) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "url",           limit: 255, null: false
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20160509021849) do
   end
 
   add_index "reddit_articles", ["url"], name: "index_reddit_articles_on_url", unique: true, using: :btree
+
+  create_table "reddit_media", force: :cascade do |t|
+    t.string   "url",        limit: 255, null: false
+    t.string   "category",   limit: 64,  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   add_foreign_key "ratings", "articles"
 end
