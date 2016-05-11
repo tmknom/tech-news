@@ -57,11 +57,15 @@ ActiveRecord::Schema.define(version: 20160509070344) do
   add_index "reddit_articles", ["url"], name: "index_reddit_articles_on_url", unique: true, using: :btree
 
   create_table "reddit_media", force: :cascade do |t|
-    t.string   "url",        limit: 255, null: false
-    t.string   "category",   limit: 64,  null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "reddit_article_id", limit: 4,   null: false
+    t.string   "url",               limit: 255, null: false
+    t.string   "category",          limit: 64,  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
+  add_index "reddit_media", ["reddit_article_id"], name: "index_reddit_media_on_reddit_article_id", using: :btree
+
   add_foreign_key "ratings", "articles"
+  add_foreign_key "reddit_media", "reddit_articles"
 end

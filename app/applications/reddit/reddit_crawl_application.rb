@@ -21,8 +21,8 @@ module Reddit
         reddit_article = @reddit_rss_transformation.transform rss_item
         @reddit_article_command_repository.save_if_not_exists reddit_article
 
-        reddit_medium = @reddit_rss_transformation.transform_medium rss_item
-        @reddit_medium_command_repository.save reddit_medium
+        reddit_medium = @reddit_rss_transformation.transform_medium reddit_article.id, rss_item
+        @reddit_medium_command_repository.save_if_not_exists reddit_medium
       rescue => e
         # todo ログ吐いたほうがいい
         # 例外が発生しても次の記事はそのまま処理して欲しいので、とりあえず標準出力して、処理を継続する

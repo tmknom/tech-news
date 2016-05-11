@@ -35,7 +35,8 @@ RSpec.describe Reddit::RedditRssTransformation, type: :model do
       end
 
       # 実行
-      reddit_medium = reddit_rss_transformation.transform_medium(rss_items[1])
+      reddit_article_id = 1
+      reddit_medium = reddit_rss_transformation.transform_medium(reddit_article_id, rss_items[1])
 
       # 確認
       expect(reddit_medium.url).to eq 'http://i.imgur.com/QGbGlAf.gifv'

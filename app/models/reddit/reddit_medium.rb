@@ -18,10 +18,10 @@
 #  fk_rails_3fb8eecdb9  (reddit_article_id => reddit_articles.id)
 #
 
-FactoryGirl.define do
-  factory :reddit_medium, class: Reddit::RedditMedium do
-    reddit_article
-    sequence(:url) { |i| "https://www.google#{i}.co.jp/example.gif" }
-    category Reddit::RedditMedium::CATEGORY_IMAGE
+module Reddit
+  class RedditMedium < ActiveRecord::Base
+    belongs_to :reddit_article, :class_name => 'Reddit::RedditArticle'
+
+    CATEGORY_IMAGE = 'image'.freeze
   end
 end

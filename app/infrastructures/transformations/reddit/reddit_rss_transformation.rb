@@ -8,11 +8,11 @@ module Reddit
       RedditArticle.new(url: url, title: title, posted_at: posted_at)
     end
 
-    def transform_medium(rss_item)
+    def transform_medium(reddit_article_id, rss_item)
       content = rss_item.content.force_encoding('utf-8')
       url = medium_url(content)
 
-      RedditMedium.new(url: url, category: RedditMedium::CATEGORY_IMAGE)
+      RedditMedium.new(reddit_article_id: reddit_article_id, url: url, category: RedditMedium::CATEGORY_IMAGE)
     end
 
     private
