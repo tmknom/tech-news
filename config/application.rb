@@ -26,6 +26,15 @@ module TechNews
     config.time_zone = 'UTC'
     config.active_record.default_timezone = :utc
 
+    # bundle exec rails g をカスタマイズ
+    config.generators do |g|
+      g.stylesheets false
+      g.javascripts false
+      g.helper false
+      g.template_engine false
+      g.test_framework :rspec, view_specs: false, helper_specs: false, fixture: true
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
 
     # 自動作成部分
 
