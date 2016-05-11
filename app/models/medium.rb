@@ -16,5 +16,7 @@
 #
 
 class Medium < ActiveRecord::Base
+  belongs_to :reddit_article, foreign_key: 'source_url'
+
   CATEGORY_IMAGE = 'image'.freeze
 end
