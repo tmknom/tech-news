@@ -3,7 +3,7 @@ class CreateMedia < ActiveRecord::Migration
     create_table :media do |t|
       t.string :url, null: false
       t.string :source_url, null: false
-      t.string :type, null: false, limit: 64
+      t.string :category, null: false, limit: 64
 
       t.timestamps null: false
     end

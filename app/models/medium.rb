@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  url        :string(255)      not null
 #  source_url :string(255)      not null
-#  type       :string(64)       not null
+#  category   :string(64)       not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -16,4 +16,5 @@
 #
 
 class Medium < ActiveRecord::Base
+  CATEGORY_IMAGE = 'image'.freeze
 end
