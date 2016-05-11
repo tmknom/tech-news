@@ -15,7 +15,6 @@ RSpec.describe Reddit::RedditArticleQueryRepository, type: :model do
     it '今日の一覧が取得できること' do
       reddit_article = reddit_article_query_repository.list_today
       expect(reddit_article.size).to eq 3
-      expect(reddit_article.first.url).to eq medium.first.url
     end
   end
 
