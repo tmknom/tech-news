@@ -5,16 +5,12 @@ module Reddit
       url = reddit_url(rss_item)
       posted_at = rss_item.updated # Time型
 
-      content = rss_item.content.force_encoding('utf-8')
-      media_url = media_url(content)
-      description = CGI.unescapeHTML(content)[0, 255]
-
-      RedditArticle.new(url: url, title: title, media_url: media_url, description: description, posted_at: posted_at)
+      RedditArticle.new(url: url, title: title, posted_at: posted_at)
     end
 
     def transform_medium(rss_item)
       content = rss_item.content.force_encoding('utf-8')
-      url = media_url(content)
+      url = medium_url(content)
       source_url = reddit_url(rss_item)
 
       Medium.new(url: url, source_url: source_url, category: Medium::CATEGORY_IMAGE)
@@ -22,7 +18,7 @@ module Reddit
 
     private
 
-    def media_url(content)
+    def medium_url(content)
       content.match(%r{&lt;span&gt;&lt;a\shref=&quot;(.+?)&quot;&gt;\[link\]})[1]
     end
 
