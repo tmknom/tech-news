@@ -11,9 +11,8 @@ module Reddit
     def transform_medium(rss_item)
       content = rss_item.content.force_encoding('utf-8')
       url = medium_url(content)
-      source_url = reddit_url(rss_item)
 
-      Medium.new(url: url, source_url: source_url, category: Medium::CATEGORY_IMAGE)
+      RedditMedium.new(url: url, category: RedditMedium::CATEGORY_IMAGE)
     end
 
     private

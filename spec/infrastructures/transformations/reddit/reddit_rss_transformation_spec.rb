@@ -35,12 +35,11 @@ RSpec.describe Reddit::RedditRssTransformation, type: :model do
       end
 
       # 実行
-      medium = reddit_rss_transformation.transform_medium(rss_items[1])
+      reddit_medium = reddit_rss_transformation.transform_medium(rss_items[1])
 
       # 確認
-      expect(medium.url).to eq 'http://i.imgur.com/QGbGlAf.gifv'
-      expect(medium.source_url).to eq 'https://www.reddit.com/r/gifs/comments/4ilapw/for_everyone_who_wanted_to_see_the_actual/'
-      expect(medium.category).to eq 'image'
+      expect(reddit_medium.url).to eq 'http://i.imgur.com/QGbGlAf.gifv'
+      expect(reddit_medium.category).to eq 'image'
     end
   end
 

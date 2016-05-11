@@ -8,7 +8,7 @@ RSpec.describe Reddit::RedditCrawlApplication, type: :application do
     it '正常系' do
       # クロール前にデータがないことを確認
       expect(Reddit::RedditArticle.all.size).to eq 0
-      expect(Medium.all.size).to eq 0
+      expect(RedditMedium.all.size).to eq 0
       # 実行
       url = 'https://www.reddit.com/r/gifs/hot/.rss'
       VCR.use_cassette 'rss/www.reddit.com.gif' do
@@ -16,7 +16,7 @@ RSpec.describe Reddit::RedditCrawlApplication, type: :application do
       end
       # クロール後にデータが登録されたことを確認
       expect(Reddit::RedditArticle.all.size).to eq 26
-      expect(Medium.all.size).to eq 26
+      expect(RedditMedium.all.size).to eq 26
     end
   end
 
