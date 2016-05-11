@@ -1,6 +1,9 @@
 Rails.application.configure do
   # 手動追加部分
 
+  # ログ出力先を変更
+  config.paths['log'] = '/vagrant/log/development.log'
+
   # better_errorsがvagrantで動作しない対処
   # http://qiita.com/osamu1203/items/c72a1b2c27ac3e02cb15
   BetterErrors::Middleware.allow_ip! '192.168.100.1'
