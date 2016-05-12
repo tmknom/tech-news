@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="page-header">
+        <h1>Webサービス開発者のためのTwitter Bootstrap入門</h1>
+    </div>
+    <table class="table table-striped" border="1">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>title</th>
+            <th>action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>sample1</td>
+            <td>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>sample2</td>
+            <td>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <% @reddit_articles.each do |reddit_article| %>
+        <ul>
+            <li><%= reddit_article.url %></li>
+            <li><%= reddit_article.title %></li>
+            <li><%= reddit_article.posted_at %></li>
+            <li><%= reddit_article.reddit_medium.url %></li>
+            <li><%= reddit_article.reddit_medium.category %></li>
+        </ul>
+    <% end %>
+</div>
+
