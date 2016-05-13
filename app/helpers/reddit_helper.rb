@@ -1,2 +1,34 @@
 module RedditHelper
+  EMPTY = ''
+
+  def embed_link(url)
+    p uri = URI.parse(url)
+
+    if uri.host.include?('imgur.com')
+      if File.extname(uri.path) == '.gifv'
+        data_id = File.basename(uri.path, '.*')
+        result = "<blockquote class='imgur-embed-pub' lang='en' data-id='#{data_id}'>" +
+            "<a href='//imgur.com/#{data_id}'>View post on imgur.com</a></blockquote>" +
+            "<script async src='//s.imgur.com/min/embed.js ' charset='utf-8'></script>"
+        return result
+      end
+    end
+
+    if File.extname(uri.path) == '.gif'
+      return "<a href='#{url}'><img src='#{url}' /></a>"
+    end
+
+    "<a href='#{url}'>#{url}</a>"
+  end
+
+  def download_button(url)
+    p uri = URI.parse(url)
+    if uri.host.include?('imgur.com')
+      data_id = File.basename(uri.path, '.*')
+      return "<a class='btn btn-success' href='//imgur.com/download/#{data_id}'>download</a>"
+    end
+
+    EMPTY
+  end
+
 end
