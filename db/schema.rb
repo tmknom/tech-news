@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160509070344) do
   create_table "reddit_articles", force: :cascade do |t|
     t.string   "url",        limit: 255, null: false
     t.string   "title",      limit: 255, null: false
+    t.string   "category",   limit: 255, null: false
     t.datetime "posted_at",              null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

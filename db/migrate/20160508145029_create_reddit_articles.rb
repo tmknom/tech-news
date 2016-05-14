@@ -3,6 +3,7 @@ class CreateRedditArticles < ActiveRecord::Migration
     create_table :reddit_articles do |t|
       t.string :url, null: false
       t.string :title, null: false
+      t.string :category, null: false
       t.datetime :posted_at, null: false
 
       t.timestamps null: false

@@ -7,18 +7,23 @@ module Reddit
       @reddit_medium_command_repository = RedditMediumCommandRepository.new
     end
 
-    def crawl(url)
-      rss_items = @rss_gateway.get url
+    def crawl(category)
+      rss_url = rss_url category
+      rss_items = @rss_gateway.get rss_url
       rss_items.each do |rss_item|
-        save_rss_item rss_item
+        save_rss_item rss_item, category
       end
     end
 
     private
 
-    def save_rss_item(rss_item)
+    def rss_url(category)
+      "https://www.reddit.com/r/#{category}/hot/.rss".freeze
+    end
+
+    def save_rss_item(rss_item, category)
       begin
-        reddit_article = @reddit_rss_transformation.transform rss_item
+        reddit_article = @reddit_rss_transformation.transform rss_item, category
         @reddit_article_command_repository.save_if_not_exists reddit_article
 
         reddit_medium = @reddit_rss_transformation.transform_medium reddit_article.id, rss_item
