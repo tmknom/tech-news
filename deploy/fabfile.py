@@ -55,12 +55,17 @@ def create_bundle_config_dir():
 @task
 def after_install():
     bundle_install()
+    assets_precompile()
     db_migrate()
     set_cron()
 
 
 def bundle_install():
     bundle('install --path %s/vendor/bundle --without development --frozen' % (HOME_DIR))
+
+
+def assets_precompile():
+    bundle('exec rake assets:precompile')
 
 
 def db_migrate():
