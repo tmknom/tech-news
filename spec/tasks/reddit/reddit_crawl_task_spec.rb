@@ -9,7 +9,7 @@ RSpec.describe Reddit::RedditCrawlTask, type: :task do
       # 実行
       Reddit::RedditCrawlTask.new.run
       # キューにジョブが登録されたことを確認
-      assert_enqueued_jobs 1
+      assert_enqueued_jobs 2
       expect(enqueued_jobs.first[:job]).to eq Reddit::RedditCrawlJob
     end
   end
