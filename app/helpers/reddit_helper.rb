@@ -14,6 +14,15 @@ module RedditHelper
       end
     end
 
+    if uri.host.include?('gfycat.com')
+      data_id = uri.path.match(%r{/(.+)$})[1]
+      result ="<div style='position:relative;padding-bottom:calc(100% / 1.78);margin-bottom:15px;'>" +
+          "<iframe src='https://gfycat.com/ifr/#{data_id}' " +
+          "frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' " +
+          "allowfullscreen></iframe></div>"
+      return result
+    end
+
     if File.extname(uri.path) == '.gif'
       return "<a href='#{url}'><img src='#{url}' /></a>"
     end
