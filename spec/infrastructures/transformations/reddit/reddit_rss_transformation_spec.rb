@@ -15,11 +15,12 @@ RSpec.describe Reddit::RedditRssTransformation, type: :model do
       end
 
       # 実行
-      reddit_article = reddit_rss_transformation.transform(rss_items[1])
+      reddit_article = reddit_rss_transformation.transform(rss_items[1], Reddit::RedditCategory::GIFS)
 
       # 確認
       expect(reddit_article.title).to eq 'For everyone who wanted to see the actual demolition'
       expect(reddit_article.url).to eq 'https://www.reddit.com/r/gifs/comments/4ilapw/for_everyone_who_wanted_to_see_the_actual/'
+      expect(reddit_article.category).to eq Reddit::RedditCategory::GIFS
       expect(reddit_article.posted_at).to eq Time.utc(2016, 5, 9, 19, 39, 21)
     end
   end

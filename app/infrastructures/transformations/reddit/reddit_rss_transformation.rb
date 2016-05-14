@@ -1,12 +1,9 @@
 module Reddit
   class RedditRssTransformation
-    def transform(rss_item)
+    def transform(rss_item, category)
       title = rss_item.title.force_encoding('utf-8')
       url = reddit_url(rss_item)
       posted_at = rss_item.updated # Time型
-
-      # TODO 後でちゃんとした値を入れる
-      category = 'dummy'
 
       RedditArticle.new(url: url, title: title, category: category, posted_at: posted_at)
     end

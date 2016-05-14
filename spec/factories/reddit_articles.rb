@@ -19,7 +19,7 @@ FactoryGirl.define do
   factory :reddit_article, class: Reddit::RedditArticle do
     sequence(:url) { |i| "https://www.google#{i}.co.jp/" }
     sequence(:title) { |i| "Google#{i}" }
-    sequence(:category) { |i| "funny#{i}" }
+    category Reddit::RedditCategory::GIFS
     posted_at '2015/12/30 12:34:56'
   end
 end
