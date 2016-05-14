@@ -106,3 +106,16 @@ def execute_sql(user_name, password, sql):
     host = get_local_env('DATABASE_HOST')
     port = get_local_env('DATABASE_PORT')
     run('mysql -h %s -P %s -u %s -p%s -e "%s"' % (host, port, user_name, password, sql))
+
+
+@task
+def cleanup_code_deploy():
+    '''CodeDeploy のゴミを削除する [-H <ip_address>]'''
+    init_fabric()
+    sudo('rm -Rf /opt/codedeploy-agent/deployment-root/*')
+
+
+def init_fabric():
+    env.user = get_local_env('SSH_USER_NAME')
+    env.port = get_local_env('SSH_PORT')
+    env.key_filename = [get_local_env('SSH_PRIVATE_KEY_FULL_PATH')]
