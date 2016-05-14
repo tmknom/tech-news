@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20160509070344) do
   create_table "reddit_media", force: :cascade do |t|
     t.integer  "reddit_article_id", limit: 4,   null: false
     t.string   "url",               limit: 255, null: false
-    t.string   "category",          limit: 64,  null: false
+    t.string   "media_type",        limit: 64,  null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end

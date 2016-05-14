@@ -11,7 +11,7 @@ class RedditController < ApplicationController
                      title: reddit_article.title,
                      posted_at: reddit_article.posted_at,
                      media_url: reddit_article.reddit_medium.url,
-                     category: reddit_article.reddit_medium.category,
+                     media_type: reddit_article.reddit_medium.media_type,
                  }
                }
       }

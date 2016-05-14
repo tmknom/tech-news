@@ -40,7 +40,7 @@ RSpec.describe Reddit::RedditRssTransformation, type: :model do
 
       # 確認
       expect(reddit_medium.url).to eq 'http://i.imgur.com/QGbGlAf.gifv'
-      expect(reddit_medium.category).to eq 'image'
+      expect(reddit_medium.media_type).to eq 'image'
     end
   end
 

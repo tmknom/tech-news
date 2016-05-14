@@ -12,7 +12,7 @@ module Reddit
       content = rss_item.content.force_encoding('utf-8')
       url = medium_url(content)
 
-      RedditMedium.new(reddit_article_id: reddit_article_id, url: url, category: RedditMedium::CATEGORY_IMAGE)
+      RedditMedium.new(reddit_article_id: reddit_article_id, url: url, media_type: RedditMedium::TYPE_IMAGE)
     end
 
     private
