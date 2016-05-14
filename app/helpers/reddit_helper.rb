@@ -12,6 +12,20 @@ module RedditHelper
             "<script async src='//s.imgur.com/min/embed.js ' charset='utf-8'></script>"
         return result
       end
+
+      gallery_regexp = %r{/gallery/(.+)$}
+      if uri.path =~ gallery_regexp
+        data_id = uri.path.match(gallery_regexp)[1].delete('/')
+        return "<a href='#{url}'><img src='//imgur.com/#{data_id}.gif' width='560' style='margin-bottom:10px' /></a>"
+      end
+
+      a_regexp = %r{/a/(.+)$}
+      if uri.path =~ a_regexp
+        return "<a href='#{url}'><img src='http://capture.heartrails.com/400x600/cool?#{url}' width='400' style='margin-bottom:10px' /></a>"
+      end
+
+      data_id = uri.path.split('/').last
+      return "<a href='#{url}'><img src='//imgur.com/#{data_id}.gif' width='560' width='400' style='margin-bottom:10px' /></a>"
     end
 
     if uri.host.include?('gfycat.com')
@@ -21,8 +35,8 @@ module RedditHelper
       return result
     end
 
-    if File.extname(uri.path) == '.gif'
-      return "<a href='#{url}'><img src='#{url}' /></a>"
+    if %w(.gif .jpg .png .jpeg).include?(File.extname(uri.path))
+      return "<a href='#{url}'><img src='#{url}' width='560' style='margin-bottom:10px' /></a>"
     end
 
     "<a href='#{url}'>#{url}</a>"

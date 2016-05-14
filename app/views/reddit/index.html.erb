@@ -9,12 +9,15 @@
                 <% reddit_articles.each do |reddit_article| %>
                     <td style="vertical-align: bottom;">
                         <%= embed_link(reddit_article.reddit_medium.url).html_safe %>
-                        <div class="col-md-10 ">
+                        <blockquote>
+                            <a href="<%= reddit_article.url %>"><%= reddit_article.title %></a>
+                        </blockquote>
+                        <div class="col-lg-10 ">
                             <a class="btn btn-primary btn-block" href="<%= reddit_article.url %>">
-                                <span class="text-left"><%= reddit_article.title %></span>
+                                <span class="text-left">リンク！</span>
                             </a>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2">
                             <%= download_button(reddit_article.reddit_medium.url).html_safe %>
                         </div>
                     </td>
