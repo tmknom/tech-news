@@ -12,12 +12,17 @@
                         <blockquote>
                             <a href="<%= reddit_article.url %>"><%= reddit_article.title %></a>
                         </blockquote>
-                        <div class="col-lg-10 ">
+                        <div class="col-lg-6 ">
                             <a class="btn btn-primary btn-block" href="<%= reddit_article.url %>">
                                 <span class="text-left">リンク！</span>
                             </a>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3 ">
+                            <button type="button" class="btn btn-warning btn-block" data-clipboard-text="<%= reddit_article.reddit_medium.url %>">
+                                コピー
+                            </button>
+                        </div>
+                        <div class="col-lg-3">
                             <%= download_button(reddit_article.reddit_medium.url).html_safe %>
                         </div>
                     </td>
@@ -27,3 +32,8 @@
         </tbody>
     </table>
 </div>
+<script>
+    $(function () {
+        var clipboard = new Clipboard('.btn');
+    });
+</script>
