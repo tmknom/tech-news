@@ -11,6 +11,10 @@
                         <%= embed_link(reddit_article.reddit_medium.url).html_safe %>
                         <blockquote>
                             <a href="<%= reddit_article.url %>"><%= reddit_article.title %></a>
+                            <ul class="h5 list-inline text-muted">
+                                <li><%= reddit_article.posted_at.in_time_zone('Tokyo') %></li>
+                                <li><%= reddit_article.category %></li>
+                            </ul>
                         </blockquote>
                         <div class="col-lg-3 ">
                             <a class="btn btn-primary btn-block" href="<%= reddit_article.reddit_medium.url %>">
