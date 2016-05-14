@@ -13,7 +13,7 @@ RSpec.describe Reddit::RedditMediumCommandRepository, type: :model do
       expect(Reddit::RedditMedium.all.size).to eq 0
 
       # 実行
-      reddit_medium = Reddit::RedditMedium.new(reddit_article_id: reddit_article.id, url: 'http://new_url.com/', category: Reddit::RedditMedium::CATEGORY_IMAGE)
+      reddit_medium = Reddit::RedditMedium.new(reddit_article_id: reddit_article.id, url: 'http://new_url.com/', media_type: Reddit::RedditMedium::TYPE_IMAGE)
       reddit_medium_command_repository.save_if_not_exists reddit_medium
 
       # 確認
@@ -30,7 +30,7 @@ RSpec.describe Reddit::RedditMediumCommandRepository, type: :model do
       expect(Reddit::RedditMedium.all.size).to eq 1
 
       # 実行
-      new_reddit_medium = Reddit::RedditMedium.new(reddit_article_id: reddit_medium.reddit_article_id, url: reddit_medium.url, category: Reddit::RedditMedium::CATEGORY_IMAGE)
+      new_reddit_medium = Reddit::RedditMedium.new(reddit_article_id: reddit_medium.reddit_article_id, url: reddit_medium.url, media_type: Reddit::RedditMedium::TYPE_IMAGE)
       reddit_medium_command_repository.save_if_not_exists new_reddit_medium
 
       # データが保存されていないことを確認

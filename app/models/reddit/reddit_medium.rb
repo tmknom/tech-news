@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  reddit_article_id :integer          not null
 #  url               :string(255)      not null
-#  category          :string(64)       not null
+#  media_type        :string(64)       not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
@@ -22,6 +22,6 @@ module Reddit
   class RedditMedium < ActiveRecord::Base
     belongs_to :reddit_article, :class_name => 'Reddit::RedditArticle'
 
-    CATEGORY_IMAGE = 'image'.freeze
+    TYPE_IMAGE = 'image'.freeze
   end
 end

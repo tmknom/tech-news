@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  reddit_article_id :integer          not null
 #  url               :string(255)      not null
-#  category          :string(64)       not null
+#  media_type        :string(64)       not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
@@ -22,6 +22,6 @@ FactoryGirl.define do
   factory :reddit_medium, class: Reddit::RedditMedium do
     reddit_article
     sequence(:url) { |i| "https://www.google#{i}.co.jp/example.gif" }
-    category Reddit::RedditMedium::CATEGORY_IMAGE
+    media_type Reddit::RedditMedium::TYPE_IMAGE
   end
 end
