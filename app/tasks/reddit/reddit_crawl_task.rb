@@ -1,8 +1,7 @@
 module Reddit
   class RedditCrawlTask
     def run
-      RedditCrawlJob.perform_later RedditCategory::FUNNY
-      RedditCrawlJob.perform_later RedditCategory::GIFS
+      RedditCategory.all.map { |category| RedditCrawlJob.perform_later category }
       # RedditCrawlApplication.new.crawl REDDIT_GIFS
     end
   end
