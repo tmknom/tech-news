@@ -1,0 +1,10 @@
+# http://morizyun.github.io/blog/kaminari-gem-paginator-rails/
+
+ja:
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
