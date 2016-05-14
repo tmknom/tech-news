@@ -9,13 +9,30 @@
                 <% reddit_articles.each do |reddit_article| %>
                     <td style="vertical-align: bottom;">
                         <%= embed_link(reddit_article.reddit_medium.url).html_safe %>
-                        <div class="col-md-10 ">
-                            <a class="btn btn-primary btn-block" href="<%= reddit_article.url %>">
-                                <span class="text-left"><%= reddit_article.title %></span>
+                        <blockquote>
+                            <a href="<%= reddit_article.url %>"><%= reddit_article.title %></a>
+                            <ul class="h5 list-inline text-muted">
+                                <li><%= reddit_article.posted_at.in_time_zone('Tokyo') %></li>
+                                <li><%= reddit_article.category %></li>
+                            </ul>
+                        </blockquote>
+                        <div class="col-lg-3 ">
+                            <a class="btn btn-primary btn-block" href="<%= reddit_article.reddit_medium.url %>">
+                                <span class="text-left">Link Open</span>
                             </a>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-3 ">
+                            <button type="button" class="btn btn-warning btn-block" data-clipboard-text="<%= reddit_article.reddit_medium.url %>">
+                                copy
+                            </button>
+                        </div>
+                        <div class="col-lg-3">
                             <%= download_button(reddit_article.reddit_medium.url).html_safe %>
+                        </div>
+                        <div class="col-lg-3 ">
+                            <a class="btn btn-default btn-block" href="<%= reddit_article.url %>">
+                                <span class="text-left">Reddit Open</span>
+                            </a>
                         </div>
                     </td>
                 <% end %>
@@ -24,3 +41,8 @@
         </tbody>
     </table>
 </div>
+<script>
+    $(function () {
+        var clipboard = new Clipboard('.btn');
+    });
+</script>
