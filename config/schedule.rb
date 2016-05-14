@@ -24,6 +24,10 @@ set :output, '/var/log/app/crontab.log'
 # 実行環境の指定
 set :environment, :production
 
+every '*/25 * * * *' do
+  rake 'batch:reddit:crawl'
+end
+
 every '35 * * * *' do
   rake 'batch:rss_crawler:crawl'
 end
