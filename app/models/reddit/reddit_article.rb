@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  url        :string(255)      not null
 #  title      :string(255)      not null
+#  category   :string(255)      not null
 #  posted_at  :datetime         not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

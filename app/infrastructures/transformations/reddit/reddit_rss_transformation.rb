@@ -5,7 +5,10 @@ module Reddit
       url = reddit_url(rss_item)
       posted_at = rss_item.updated # Time型
 
-      RedditArticle.new(url: url, title: title, posted_at: posted_at)
+      # TODO 後でちゃんとした値を入れる
+      category = 'dummy'
+
+      RedditArticle.new(url: url, title: title, category: category, posted_at: posted_at)
     end
 
     def transform_medium(reddit_article_id, rss_item)
