@@ -1,11 +1,14 @@
 # == Route Map
 #
 #       Prefix Verb URI Pattern             Controller#Action
+#         root GET  /                       reddit#index
 # rss_articles GET  /rss/articles(.:format) rss/articles#index
 # reddit_index GET  /reddit(.:format)       reddit#index
 #
 
 Rails.application.routes.draw do
+  root to: 'reddit#index'
+
   namespace :rss do
     resources :articles, :only => [:index]
   end
