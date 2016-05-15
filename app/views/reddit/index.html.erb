@@ -13,7 +13,7 @@
                         <blockquote>
                             <a href="<%= reddit_article.url %>"><%= reddit_article.title %></a>
                             <ul class="h5 list-inline text-muted">
-                                <li><%= reddit_article.posted_at.in_time_zone('Tokyo') %></li>
+                                <li><%= reddit_article.created_at %></li>
                                 <li><%= reddit_article.category %></li>
                             </ul>
                         </blockquote>
