@@ -18,5 +18,9 @@
 module Reddit
   class RedditArticle < ActiveRecord::Base
     has_one :reddit_medium, :class_name => 'Reddit::RedditMedium'
+
+    def created_at
+      self[:created_at].in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M')
+    end
   end
 end
