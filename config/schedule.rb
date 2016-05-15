@@ -29,10 +29,10 @@ every '*/25 * * * *' do
 end
 
 every '35 * * * *' do
-  rake 'batch:rss_crawler:crawl'
+  rake 'batch:rss:crawl'
 end
 
 every '45 * * * *' do
-  rake 'batch:rating_crawler:hatena_bookmark_count_crawl'
-  rake 'batch:rating_crawler:facebook_count_crawl'
+  rake 'batch:rss:hatena_bookmark_count_crawl'
+  rake 'batch:rss:facebook_count_crawl'
 end
