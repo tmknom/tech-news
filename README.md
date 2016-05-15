@@ -178,3 +178,27 @@ direnv edit .
 ```bash
 cat envrc.example
 ```
+
+## Vagrant 環境のセットアップ
+
+プロビジョニング用のソースコード取得。
+
+```bash
+git clone https://github.com/tmknom/aws-infrastructure.git
+git clone https://github.com/tmknom/tech-news.git
+cd tech-news
+```
+
+itamae でプロビジョニング実行。
+
+```bash
+vagrant up
+APPLICATION_USER_NAME=<user_name> APPLICATION_USER_HOME=<user_home> fab itamae_vagrant -f ../aws-infrastructure/configuration/fabfile.py
+```
+
+```vagrant ssh``` して、vagrant内で実行。
+
+```bash
+chmod 755 /vagrant/provisioning/provision.sh
+/vagrant/provisioning/provision.sh
+```

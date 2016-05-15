@@ -5,7 +5,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "192.168.100.10"
   config.vm.hostname = 'tech-news'
 
-  config.vm.provision :shell, path: "provisioning/provision.sh"
+  #config.vm.provision :shell, path: "provisioning/provision.sh"
+  config.vm.provision :shell, inline: "yum -y update --exclude=kernel*"
 
   # Vagrantが遅いのでその対策
   # http://qiita.com/itopan88/items/06d7c7a08f2d681b042a
