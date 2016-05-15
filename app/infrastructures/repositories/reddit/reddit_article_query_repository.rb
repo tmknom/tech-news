@@ -1,8 +1,19 @@
 module Reddit
   class RedditArticleQueryRepository
-    def list_today
-      RedditArticle.joins(:reddit_medium).eager_load(:reddit_medium).where('reddit_articles.created_at > (CURDATE() - INTERVAL 1 DAY)').order(posted_at: :desc).limit(30)
-      # RedditArticle.joins('INNER JOIN `media` ON `media`.`source_url` = `reddit_articles`.`url`').select('*').where('`reddit_articles`.`created_at` > (CURDATE() - INTERVAL 1 DAY)').order(posted_at: :desc).limit(30)
+    PER_PAGE = 50
+
+    def list_recently(page)
+      where = 'reddit_articles.created_at > (CURDATE() - INTERVAL 7 DAY)'
+      list(where, page)
+    end
+
+    private
+
+    def list(where, page)
+      RedditArticle.joins(:reddit_medium).eager_load(:reddit_medium)
+          .where(where)
+          .order(created_at: :desc)
+          .page(page).per(PER_PAGE)
     end
   end
 end

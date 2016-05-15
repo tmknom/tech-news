@@ -1,8 +1,7 @@
 class RedditController < ApplicationController
   def index
-    # @reddit_articles = Reddit::RedditArticleQueryRepository.new.list_today
+    @reddit_articles = Reddit::RedditArticleQueryRepository.new.list_recently params[:page]
 
-    @reddit_articles = Reddit::RedditArticle.joins(:reddit_medium).eager_load(:reddit_medium).where('reddit_articles.created_at > (CURDATE() - INTERVAL 1 DAY)').order(posted_at: :desc).page(params[:page])
     respond_to do |format|
       format.html
       format.json {
