@@ -199,6 +199,6 @@ APPLICATION_USER_NAME=<user_name> APPLICATION_USER_HOME=<user_home> fab itamae_v
 ```vagrant ssh``` して、vagrant内で実行。
 
 ```bash
-chmod 755 /vagrant/provisioning/provision.sh
-/vagrant/provisioning/provision.sh
+chmod 755 /vagrant/script/vagrant/provision.sh
+/vagrant/script/vagrant/provision.sh
 ```
