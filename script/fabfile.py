@@ -3,6 +3,8 @@
 from fabric.api import *
 from fabric.contrib.console import *
 
+from database import database
+
 APPLICATION_NAME = 'tech-news'
 REPOSITORY = 'tmknom/tech-news'
 
@@ -71,41 +73,17 @@ def get_current_branch():
 
 
 @task
-def init_db():
-    '''RDS にデータベースとユーザを作成 [-H <ip_address>]'''
-    if not confirm("RDS にデータベースとユーザを作成します。本当に実行しますか？"):
-        abort('実行を中止しました。')
+def database_initialize_production():
+    '''本番用 RDS にデータベースとユーザを作成 [-H <ip_address>]'''
     init_fabric()
-    create_user()
-    create_db()
+    database.initialize_production()
 
 
-def create_user():
-    db_name = get_local_env('DATABASE_DB')
-    user_name = get_local_env('DATABASE_USER_NAME')
-    password = get_local_env('DATABASE_USER_PASSWORD')
-    sql = ' GRANT ALL ON %s.* TO %s ' % (db_name, user_name) \
-          + ' IDENTIFIED BY \'%s\'; ' % (password) \
-          + ' FLUSH PRIVILEGES; '
-
-    master_user_name = get_local_env('DATABASE_MASTER_USER_NAME')
-    master_user_password = get_local_env('DATABASE_MASTER_USER_PASSWORD')
-    execute_sql(master_user_name, master_user_password, sql)
-
-
-def create_db():
-    db_name = get_local_env('DATABASE_DB')
-    sql = 'CREATE DATABASE IF NOT EXISTS %s DEFAULT CHARACTER SET utf8;' % (db_name)
-
-    user_name = get_local_env('DATABASE_USER_NAME')
-    password = get_local_env('DATABASE_USER_PASSWORD')
-    execute_sql(user_name, password, sql)
-
-
-def execute_sql(user_name, password, sql):
-    host = get_local_env('DATABASE_HOST')
-    port = get_local_env('DATABASE_PORT')
-    run('mysql -h %s -P %s -u %s -p%s -e "%s"' % (host, port, user_name, password, sql))
+@task
+def database_initialize_administration():
+    '''管理用 RDS にデータベースとユーザを作成 [-H <ip_address>]'''
+    init_fabric()
+    database.initialize_administration()
 
 
 @task
@@ -119,3 +97,7 @@ def init_fabric():
     env.user = get_local_env('SSH_USER_NAME')
     env.port = get_local_env('SSH_PORT')
     env.key_filename = [get_local_env('SSH_PRIVATE_KEY_FULL_PATH')]
+
+
+def get_local_env(env_name):
+    return local('echo $%s' % (env_name), capture=True)
