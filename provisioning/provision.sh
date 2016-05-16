@@ -7,10 +7,15 @@ mysql -u development_user -pdevelopment_password -e "CREATE DATABASE development
 mysql -u test_user -ptest_password -e "CREATE DATABASE test_db CHARACTER SET utf8;"
 mysql -u production_user -pproduction_password -e "CREATE DATABASE production_db CHARACTER SET utf8;"
 
-# app
+# vagrant
 sudo chmod 755 /opt
 sudo chmod 777 /var/log/app/
 sudo chmod 777 /var/run/app/
+sudo chmod 777 /var/www
+echo 'export WEB_CONCURRENCY=1' >> /home/vagrant/.bashrc
+source /home/vagrant/.bashrc
+sudo sed -i 's/^worker_processes\s\+auto;$/worker_processes 1;/' /etc/nginx/nginx.conf
+sudo service nginx restart
 
 # rails
 cd /vagrant
@@ -20,4 +25,5 @@ bundle exec rspec
 
 bundle exec sidekiq -C ./config/sidekiq.yml -d
 bundle exec rake batch:reddit:crawl
-bundle exec rails s -b 0.0.0.0 -d
+bundle exec unicorn -c ./config/unicorn.rb -D
+# bundle exec rails s -b 0.0.0.0 -d
