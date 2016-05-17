@@ -9,23 +9,23 @@ permissions:
     group: rails
 hooks:
   BeforeInstall:
-    - location: deploy/before_install.sh
+    - location: script/deploy/before_install.sh
       timeout: 300
       runas: root
   AfterInstall:
-    - location: deploy/after_install.sh
+    - location: script/deploy/after_install.sh
       timeout: 1800
       runas: root
   ApplicationStart:
-    - location: deploy/application_start.sh
+    - location: script/deploy/application_start.sh
       timeout: 300
       runas: root
   ApplicationStop:
-    - location: deploy/application_stop.sh
+    - location: script/deploy/application_stop.sh
       timeout: 300
       runas: root
   ValidateService:
-    - location: deploy/validate_service.sh
+    - location: script/deploy/validate_service.sh
       timeout: 300
       runas: root
 
