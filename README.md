@@ -2,17 +2,7 @@
 
 [![Circle CI](https://circleci.com/gh/tmknom/tech-news.svg?style=svg)](https://circleci.com/gh/tmknom/tech-news)
 [![Coverage Status](https://coveralls.io/repos/github/tmknom/tech-news/badge.svg?branch=master)](https://coveralls.io/github/tmknom/tech-news?branch=master)
-[![Dependency Status](https://gemnasium.com/tmknom/tech-news.svg)](https://gemnasium.com/tmknom/tech-news)
-
-
-## セットアップ
-
-```bash
-git clone https://github.com/tmknom/tech-news.git
-cd tech-news
-bundle install --path vendor/bundle --without development
-RAILS_ENV=production bundle exec rake db:migrate
-```
+[![Dependency Status](https://gemnasium.com/badges/github.com/tmknom/tech-news.svg)](https://gemnasium.com/github.com/tmknom/tech-news)
 
 ## デプロイ
 
@@ -38,16 +28,11 @@ CodeDeploy が以上終了した場合に使う。
 fab cleanup_code_deploy -H <ip_address>
 ```
 
-## EC2インスタンスセットアップ
-
-```bash
-fab init_env -H <ip_address>
-```
-
 ## データベースセットアップ
 
 ```bash
-fab init_db -H <ip_address>
+fab database_initialize_production -f script/fabfile.py -H <ip_address>
+fab database_initialize_administration -f script/fabfile.py -H <ip_address>
 ```
 
 ## Rakeタスク
