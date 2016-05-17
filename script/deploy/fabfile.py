@@ -11,15 +11,7 @@ APPLICATION_USER = 'rails'
 
 @task
 def application_stop():
-    stop_unicorn()
     stop_sidekiq()
-
-
-def stop_unicorn():
-    try:
-        local_su('cat %s/unicorn.pid | xargs kill -9' % (PID_DIR), CURRENT_DIR)
-    except:
-        print('unicorn is already stopped...')
 
 
 def stop_sidekiq():
@@ -78,7 +70,21 @@ def set_cron():
 
 @task
 def application_start():
-    bundle('exec unicorn -c ./config/unicorn.rb -D')
+    start_unicorn()
+    start_sidekiq()
+
+
+def start_unicorn():
+    with settings(warn_only=True):
+        already_started = local('ps aux | grep "unicorn master" | grep -v grep', capture=True).strip()
+
+    if already_started:
+        local_su('cat %s/unicorn.pid | xargs kill -s USR2' % (PID_DIR), CURRENT_DIR)
+    else:
+        bundle('exec unicorn -c ./config/unicorn.rb -D')
+
+
+def start_sidekiq():
     bundle('exec sidekiq -C ./config/sidekiq.yml -d')
 
 
