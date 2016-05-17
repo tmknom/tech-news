@@ -12,7 +12,7 @@ sudo chmod 755 /opt
 sudo chmod 777 /var/log/app/
 sudo chmod 777 /var/run/app/
 sudo chmod 777 /var/www
-echo 'export WEB_CONCURRENCY=1' >> /home/vagrant/.bashrc
+echo 'export WEB_CONCURRENCY=2' >> /home/vagrant/.bashrc
 source /home/vagrant/.bashrc
 sudo sed -i 's/^worker_processes\s\+auto;$/worker_processes 1;/' /etc/nginx/nginx.conf
 sudo service nginx restart
