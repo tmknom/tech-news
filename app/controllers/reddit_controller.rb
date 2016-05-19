@@ -1,6 +1,6 @@
 class RedditController < ApplicationController
   def index
-    @reddit_articles = Reddit::RedditArticleQueryRepository.new.list_recently params[:page]
+    @reddit_articles = Reddit::RedditArticleQueryRepository.new.list_recently(params[:score], params[:page])
 
     respond_to do |format|
       format.html
