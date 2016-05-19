@@ -28,6 +28,9 @@ module Reddit
     end
 
     def html(item)
+      if item.secure_media.nil?
+        return EMPTY
+      end
       CGI.unescapeHTML(item.secure_media[:oembed][:html])
     end
 
@@ -56,5 +59,6 @@ module Reddit
     end
 
     MAX_MYSQL_RECORD_SIZE = 255
+    EMPTY = ''
   end
 end

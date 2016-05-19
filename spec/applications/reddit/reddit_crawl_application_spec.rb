@@ -15,7 +15,7 @@ RSpec.describe Reddit::RedditCrawlApplication, type: :application do
       end
       # クロール後にデータが登録されたことを確認
       expect(Reddit::RedditArticle.all.size).to eq 11
-      expect(Reddit::RedditMedium.all.size).to eq 9
+      expect(Reddit::RedditMedium.all.size).to eq 11
     end
   end
 
