@@ -21,6 +21,11 @@
 module Reddit
   class RedditArticle < ActiveRecord::Base
     has_one :reddit_medium, :class_name => 'Reddit::RedditMedium'
+    MINIMUM_POPULAR_SCORE = 10
+
+    def popular?
+      score > MINIMUM_POPULAR_SCORE
+    end
 
     def created_at
       self[:created_at].in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M')

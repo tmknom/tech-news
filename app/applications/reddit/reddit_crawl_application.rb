@@ -10,25 +10,35 @@ module Reddit
     def crawl(category)
       items = @reddit_extraction.extract category
       items.each do |item|
-        save_item item, category
+        quiet_save_item item, category
       end
     end
 
     private
 
-    def save_item(item, category)
+    def quiet_save_item(item, category)
       begin
-        reddit_article = @reddit_api_transformation.transform item, category
-        @reddit_article_command_repository.save_if_not_exists reddit_article
-
-        unless reddit_article.id.nil?
-          reddit_medium = @reddit_api_transformation.transform_medium reddit_article.id, item
-          @reddit_medium_command_repository.save_if_not_exists reddit_medium
-        end
+        save_item(item, category)
       rescue => e
         # todo ログ吐いたほうがいい
         # 例外が発生しても次の記事はそのまま処理して欲しいので、とりあえず標準出力して、処理を継続する
         p e.message
+      end
+    end
+
+    def save_item(item, category)
+      reddit_article = @reddit_api_transformation.transform item, category
+      if reddit_article.popular?
+        @reddit_article_command_repository.save_if_not_exists reddit_article
+        save_reddit_medium(reddit_article.id, item)
+      end
+
+    end
+
+    def save_reddit_medium(reddit_article_id, item)
+      unless reddit_article_id.nil?
+        reddit_medium = @reddit_api_transformation.transform_medium reddit_article_id, item
+        @reddit_medium_command_repository.save_if_not_exists reddit_medium
       end
     end
   end

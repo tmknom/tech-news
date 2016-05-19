@@ -268,7 +268,7 @@ http_interactions:
         "likes": null, "suggested_sort": null, "user_reports": [], "secure_media":
         null, "link_flair_text": null, "id": "3dasau", "from_kind": null, "gilded":
         0, "archived": true, "clicked": false, "report_reasons": null, "author": "GifsModerator",
-        "media": null, "score": 760, "approved_by": null, "over_18": false, "hidden":
+        "media": null, "score": 1, "approved_by": null, "over_18": false, "hidden":
         false, "preview": {"images": [{"source": {"url": "https://i.redditmedia.com/bybAlgeE7VI1ifCpAhwNNIdFeO4s6fHJsK5EW39Gjq0.jpg?s=beff1f9b873774bcd2be72002d87494a",
         "width": 160, "height": 120}, "resolutions": [{"url": "https://i.redditmedia.com/bybAlgeE7VI1ifCpAhwNNIdFeO4s6fHJsK5EW39Gjq0.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=108&amp;s=4e2a44b1e500d6b3fa2114667659d784",
         "width": 108, "height": 81}], "variants": {}, "id": "DwhEndX7HEi_qmPigketUjeY7sXnOldsyi0A-WCw4iE"}]},
