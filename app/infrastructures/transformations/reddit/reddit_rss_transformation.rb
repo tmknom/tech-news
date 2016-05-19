@@ -11,7 +11,7 @@ module Reddit
     def transform_medium(reddit_article_id, rss_item)
       url = medium_url(rss_item)
 
-      RedditMedium.new(reddit_article_id: reddit_article_id, url: url, media_type: RedditMedium::TYPE_IMAGE)
+      RedditMedium.new(reddit_article_id: reddit_article_id, url: url, media_type: RedditMedium::TYPE_IMAGE, html: EMPTY)
     end
 
     private
@@ -35,5 +35,6 @@ module Reddit
     end
 
     MAX_MYSQL_RECORD_SIZE = 255
+    EMPTY = ''
   end
 end

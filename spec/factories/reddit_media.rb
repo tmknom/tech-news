@@ -24,5 +24,6 @@ FactoryGirl.define do
     reddit_article
     sequence(:url) { |i| "https://www.google#{i}.co.jp/example.gif" }
     media_type Reddit::RedditMedium::TYPE_IMAGE
+    sequence(:html) { |i| "sample html #{i}" }
   end
 end
