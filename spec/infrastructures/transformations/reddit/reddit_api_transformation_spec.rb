@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Reddit::RedditRssTransformation, type: :model do
+RSpec.describe Reddit::RedditApiTransformation, type: :model do
 
   let(:reddit_rss_transformation) { Reddit::RedditApiTransformation.new }
 
@@ -41,8 +41,10 @@ RSpec.describe Reddit::RedditRssTransformation, type: :model do
       reddit_medium = reddit_rss_transformation.transform_medium(reddit_article_id, items[1])
 
       # 確認
+      expect(reddit_medium.reddit_article_id).to eq reddit_article_id
       expect(reddit_medium.url).to eq 'http://imgur.com/MV42hYt.gifv'
       expect(reddit_medium.media_type).to eq 'image'
+      expect(reddit_medium.html).to eq '<iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fi.imgur.com%2FMV42hYt.mp4&src_secure=1&url=http%3A%2F%2Fi.imgur.com%2FMV42hYt.gifv&image=https%3A%2F%2Fi.imgur.com%2FMV42hYth.jpg&key=2aa3c4d5f3de4f5b9120b660ad850dc9&type=video%2Fmp4&schema=imgur" width="406" height="720" scrolling="no" frameborder="0" allowfullscreen></iframe>'
     end
   end
 

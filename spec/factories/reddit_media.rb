@@ -8,6 +8,7 @@
 #  media_type        :string(64)       not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  html              :text(65535)      not null
 #
 # Indexes
 #
@@ -23,5 +24,6 @@ FactoryGirl.define do
     reddit_article
     sequence(:url) { |i| "https://www.google#{i}.co.jp/example.gif" }
     media_type Reddit::RedditMedium::TYPE_IMAGE
+    sequence(:html) { |i| "sample html #{i}" }
   end
 end

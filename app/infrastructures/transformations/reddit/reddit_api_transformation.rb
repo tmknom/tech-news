@@ -16,14 +16,22 @@ module Reddit
 
     def transform_medium(reddit_article_id, item)
       url = medium_url(item)
+      html = html(item)
 
-      RedditMedium.new(reddit_article_id: reddit_article_id, url: url, media_type: RedditMedium::TYPE_IMAGE)
+      RedditMedium.new(reddit_article_id: reddit_article_id, url: url, media_type: RedditMedium::TYPE_IMAGE, html: html)
     end
 
     private
 
     def medium_url(item)
       item.url.force_encoding('utf-8')[0, MAX_MYSQL_RECORD_SIZE]
+    end
+
+    def html(item)
+      if item.secure_media.nil?
+        return EMPTY
+      end
+      CGI.unescapeHTML(item.secure_media[:oembed][:html])
     end
 
     def reddit_url(item)
@@ -51,5 +59,6 @@ module Reddit
     end
 
     MAX_MYSQL_RECORD_SIZE = 255
+    EMPTY = ''
   end
 end

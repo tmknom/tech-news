@@ -16,7 +16,7 @@ RSpec.describe Reddit::RedditCrawlJob, type: :job do
     end
 
     it 'アプリケーションが例外をスローしないこと' do
-      VCR.use_cassette 'rss/www.reddit.com.gif' do
+      VCR.use_cassette 'reddit/www.reddit.com' do
         expect {
           Reddit::RedditCrawlJob.perform_now Reddit::RedditCategory::GIFS
         }.not_to raise_error
