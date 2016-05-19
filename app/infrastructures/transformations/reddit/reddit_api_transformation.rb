@@ -6,8 +6,12 @@ module Reddit
       title = title(item)
       url = reddit_url(item)
       posted_at = posted_at(item)
+      adult = adult(item)
+      score = score(item)
+      comment_count = comment_count(item)
 
-      RedditArticle.new(url: url, title: title, category: category, posted_at: posted_at)
+      RedditArticle.new(url: url, title: title, category: category, posted_at: posted_at, adult: adult,
+                        score: score, comment_count: comment_count)
     end
 
     def transform_medium(reddit_article_id, item)
@@ -32,6 +36,18 @@ module Reddit
 
     def posted_at(item)
       Time.at(item.created_utc) # Time型 1414767600)
+    end
+
+    def score(item)
+      item.score
+    end
+
+    def comment_count(item)
+      item.num_comments
+    end
+
+    def adult(item)
+      item.over_18
     end
 
     MAX_MYSQL_RECORD_SIZE = 255

@@ -21,6 +21,9 @@ RSpec.describe Reddit::RedditRssTransformation, type: :model do
       expect(reddit_article.url).to eq 'https://www.reddit.com/r/gifs/comments/4jzrka/that_pizza_must_be_delicious/'
       expect(reddit_article.category).to eq Reddit::RedditCategory::GIFS
       expect(reddit_article.posted_at).to eq Time.utc(2016, 5, 19, 0, 4, 16)
+      expect(reddit_article.score).to eq 4723
+      expect(reddit_article.comment_count).to eq 391
+      expect(reddit_article.adult).to eq false
     end
   end
 
