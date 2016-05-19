@@ -2,7 +2,7 @@ Rails.application.configure do
   # 手動追加部分
 
   # ログ出力先を変更
-  config.paths['log'] = '/vagrant/log/development.log'
+  config.paths['log'] = 'log/development.log'
 
   # better_errorsがvagrantで動作しない対処
   # http://qiita.com/osamu1203/items/c72a1b2c27ac3e02cb15
@@ -20,7 +20,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
