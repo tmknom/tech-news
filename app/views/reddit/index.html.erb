@@ -9,12 +9,14 @@
             <tr>
                 <% reddit_articles.each do |reddit_article| %>
                     <td style="vertical-align: bottom;">
-                        <%= embed_link(reddit_article.reddit_medium.url).html_safe %>
+                        <%= embed_link(reddit_article.reddit_medium).html_safe %>
                         <blockquote>
                             <a href="<%= reddit_article.url %>"><%= reddit_article.title %></a>
                             <ul class="h5 list-inline text-muted">
                                 <li><%= reddit_article.created_at %></li>
                                 <li><%= reddit_article.category %></li>
+                                <li><%= reddit_article.score %> points</li>
+                                <li><%= reddit_article.comment_count %> comments</li>
                             </ul>
                         </blockquote>
                         <div class="col-lg-3 ">

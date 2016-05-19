@@ -1,7 +1,13 @@
 module RedditHelper
   EMPTY = ''
 
-  def embed_link(url)
+  def embed_link(reddit_medium)
+    html = reddit_medium.html
+    if html.present?
+      return html
+    end
+
+    url = reddit_medium.url
     p uri = URI.parse(url)
 
     if uri.host.include?('imgur.com')
