@@ -28,11 +28,11 @@ every '*/25 * * * *' do
   rake 'batch:reddit:crawl'
 end
 
-every '35 * * * *' do
-  rake 'batch:rss:crawl'
-end
-
-every '45 * * * *' do
-  rake 'batch:rss:hatena_bookmark_count_crawl'
-  rake 'batch:rss:facebook_count_crawl'
-end
+# every '35 * * * *' do
+#   rake 'batch:rss:crawl'
+# end
+#
+# every '45 * * * *' do
+#   rake 'batch:rss:hatena_bookmark_count_crawl'
+#   rake 'batch:rss:facebook_count_crawl'
+# end
