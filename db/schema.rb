@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509070344) do
+ActiveRecord::Schema.define(version: 20160519091247) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "url",           limit: 255, null: false
@@ -36,12 +36,15 @@ ActiveRecord::Schema.define(version: 20160509070344) do
   add_index "ratings", ["article_id"], name: "index_ratings_on_article_id", using: :btree
 
   create_table "reddit_articles", force: :cascade do |t|
-    t.string   "url",        limit: 255, null: false
-    t.string   "title",      limit: 255, null: false
-    t.string   "category",   limit: 255, null: false
-    t.datetime "posted_at",              null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "url",           limit: 255,                 null: false
+    t.string   "title",         limit: 255,                 null: false
+    t.string   "category",      limit: 255,                 null: false
+    t.datetime "posted_at",                                 null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "score",         limit: 4,   default: 0,     null: false
+    t.integer  "comment_count", limit: 4,   default: 0,     null: false
+    t.boolean  "adult",                     default: false, null: false
   end
 
   add_index "reddit_articles", ["url"], name: "index_reddit_articles_on_url", unique: true, using: :btree
