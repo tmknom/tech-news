@@ -9,6 +9,7 @@ gem 'simple-rss', '~> 1.3', '>= 1.3.1' # RSSパーサ
 gem 'awesome_print' # Rubyオブジェクトを綺麗に整形
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6' # Twitter Bootstrap
 gem 'kaminari' # ページャ
+gem 'redd', '~> 0.7.0' # reddit クライアント
 
 group :test do
   # テスト
