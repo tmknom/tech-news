@@ -24,5 +24,8 @@ FactoryGirl.define do
     sequence(:title) { |i| "Google#{i}" }
     category Reddit::RedditCategory::GIFS
     posted_at '2015/12/30 12:34:56'
+    sequence(:score) { |i| i + 1000 }
+    sequence(:comment_count) { |i| i + 100 }
+    adult false
   end
 end
