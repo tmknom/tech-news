@@ -10,7 +10,7 @@ RSpec.describe Reddit::RedditArticleQueryRepository, type: :model do
     end
 
     it '一覧が取得できること' do
-      articles = reddit_article_query_repository.list_recently nil
+      articles = reddit_article_query_repository.list_recently(10, nil)
       expect(articles.size).to eq 3
     end
   end
