@@ -14,8 +14,8 @@ RSpec.describe Reddit::RedditCrawlApplication, type: :application do
         rss_crawl_application.crawl Reddit::RedditCategory::GIFS
       end
       # クロール後にデータが登録されたことを確認
-      expect(Reddit::RedditArticle.all.size).to eq 11
-      expect(Reddit::RedditMedium.all.size).to eq 11
+      expect(Reddit::RedditArticle.all.size).to eq 10
+      expect(Reddit::RedditMedium.all.size).to eq 10
     end
   end
 
