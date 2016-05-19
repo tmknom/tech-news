@@ -10,13 +10,13 @@ module Reddit
     def crawl(category)
       items = @reddit_extraction.extract category
       items.each do |item|
-        save_rss_item item, category
+        save_item item, category
       end
     end
 
     private
 
-    def save_rss_item(item, category)
+    def save_item(item, category)
       begin
         reddit_article = @reddit_api_transformation.transform item, category
         @reddit_article_command_repository.save_if_not_exists reddit_article
