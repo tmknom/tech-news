@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require jquery.lazyload.min
+//= require clipboard.min
 //= require bootstrap-datepicker.min
 //= require_tree .
