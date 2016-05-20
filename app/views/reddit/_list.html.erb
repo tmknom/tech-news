@@ -1,8 +1,16 @@
 <div class="container">
-    <div class="page-header">
-        <h1>Redditまとめ</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <%= paginate @reddit_articles %>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group date" style="margin:20px 0;">
+                <input type="text" class="form-control" value="<%= params['date'] %>">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
+        </div>
     </div>
-    <%= paginate @reddit_articles %>
+
     <table class="table table-striped" border="1">
         <tbody>
         <% @reddit_articles.each_slice(2) do |reddit_articles| %>
@@ -51,5 +59,18 @@
     });
     $(function () {
         var clipboard = new Clipboard('.btn');
+    });
+
+    // カレンダーをクリックして画面遷移
+    $('.input-group.date').datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true
+    }).on('changeDate', function (e) {
+        var yyyymmdd = [
+            e['date'].getFullYear(),
+            ("0" + (e['date'].getMonth() + 1)).slice(-2),
+            ("0" + e['date'].getDate()).slice(-2)
+        ].join('-');
+        window.location.href = '/reddit/log?date=' + yyyymmdd;
     });
 </script>
