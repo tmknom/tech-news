@@ -55,22 +55,23 @@
 </div>
 <script>
     $(function () {
+        // 画像の遅延ロード
         $('img.lazy').lazyload();
-    });
-    $(function () {
-        var clipboard = new Clipboard('.btn');
-    });
 
-    // カレンダーをクリックして画面遷移
-    $('.input-group.date').datepicker({
-        format: "yyyy-mm-dd",
-        todayHighlight: true
-    }).on('changeDate', function (e) {
-        var yyyymmdd = [
-            e['date'].getFullYear(),
-            ("0" + (e['date'].getMonth() + 1)).slice(-2),
-            ("0" + e['date'].getDate()).slice(-2)
-        ].join('-');
-        window.location.href = '/reddit/log?date=' + yyyymmdd;
+        // クリップボードのコピー
+        var clipboard = new Clipboard('.btn');
+
+        // カレンダーをクリックして画面遷移
+        $('.input-group.date').datepicker({
+            format: "yyyy-mm-dd",
+            todayHighlight: true
+        }).on('changeDate', function (e) {
+            var yyyymmdd = [
+                e['date'].getFullYear(),
+                ("0" + (e['date'].getMonth() + 1)).slice(-2),
+                ("0" + e['date'].getDate()).slice(-2)
+            ].join('-');
+            window.location.href = '/reddit/log?date=' + yyyymmdd;
+        });
     });
 </script>
