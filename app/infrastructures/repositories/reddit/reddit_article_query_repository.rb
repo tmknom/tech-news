@@ -5,7 +5,7 @@ module Reddit
 
     def list_recently(score, page)
       score = score_or_default(score)
-      where = "reddit_articles.created_at > (CURDATE() - INTERVAL 7 DAY) and score > #{score}"
+      where = "reddit_articles.created_at > (CURDATE() - INTERVAL 30 HOUR) and score > #{score}"
       list(where, page)
     end
 
@@ -14,7 +14,7 @@ module Reddit
     def list(where, page)
       RedditArticle.joins(:reddit_medium).eager_load(:reddit_medium)
           .where(where)
-          .order(created_at: :desc)
+          .order(score: :desc)
           .page(page).per(PER_PAGE)
     end
 
