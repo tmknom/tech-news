@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="page-header">
+        <h1>Redditまとめ</h1>
+    </div>
+    <%= paginate @reddit_articles %>
+    <table class="table table-striped" border="1">
+        <tbody>
+        <% @reddit_articles.each_slice(2) do |reddit_articles| %>
+            <tr>
+                <% reddit_articles.each do |reddit_article| %>
+                    <td style="vertical-align: bottom;">
+                        <%= embed_link(reddit_article.reddit_medium).html_safe %>
+                        <blockquote>
+                            <a href="<%= reddit_article.url %>"><%= reddit_article.title %></a>
+                            <ul class="h5 list-inline text-muted">
+                                <li><%= reddit_article.created_at %></li>
+                                <li><%= reddit_article.category %></li>
+                                <li><%= reddit_article.score %> points</li>
+                                <li><%= reddit_article.comment_count %> comments</li>
+                            </ul>
+                        </blockquote>
+                        <div class="col-lg-3 ">
+                            <a class="btn btn-primary btn-block" href="<%= reddit_article.reddit_medium.url %>">
+                                <span class="text-left">Link Open</span>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 ">
+                            <button type="button" class="btn btn-warning btn-block" data-clipboard-text="<%= reddit_article.reddit_medium.url %>">
+                                copy
+                            </button>
+                        </div>
+                        <div class="col-lg-3">
+                            <%= download_button(reddit_article.reddit_medium.url).html_safe %>
+                        </div>
+                        <div class="col-lg-3 ">
+                            <a class="btn btn-default btn-block" href="<%= reddit_article.url %>">
+                                <span class="text-left">Reddit Open</span>
+                            </a>
+                        </div>
+                    </td>
+                <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <%= paginate @reddit_articles %>
+</div>
+<script>
+    $(function () {
+        $('img.lazy').lazyload();
+    });
+    $(function () {
+        var clipboard = new Clipboard('.btn');
+    });
+</script>

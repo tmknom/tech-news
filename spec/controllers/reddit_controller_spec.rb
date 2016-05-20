@@ -12,4 +12,14 @@ RSpec.describe RedditController, type: :controller do
     end
   end
 
+  describe 'GET #log' do
+    before do
+      get :log
+    end
+
+    it 'ステータスコードとして200が返ること' do
+      expect(response.status).to eq 200
+    end
+  end
+
 end

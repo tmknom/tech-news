@@ -1,9 +1,10 @@
 # == Route Map
 #
-#       Prefix Verb URI Pattern             Controller#Action
-#         root GET  /                       reddit#index
-# rss_articles GET  /rss/articles(.:format) rss/articles#index
-# reddit_index GET  /reddit(.:format)       reddit#index
+#           Prefix Verb URI Pattern             Controller#Action
+#             root GET  /                       reddit#index
+#     rss_articles GET  /rss/articles(.:format) rss/articles#index
+# log_reddit_index GET  /reddit/log(.:format)   reddit#log
+#     reddit_index GET  /reddit(.:format)       reddit#index
 #
 
 Rails.application.routes.draw do
@@ -13,7 +14,11 @@ Rails.application.routes.draw do
     resources :articles, :only => [:index]
   end
 
-  resources :reddit, :only => [:index]
+  resources :reddit, :only => [:index] do
+    collection do
+      get :log
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

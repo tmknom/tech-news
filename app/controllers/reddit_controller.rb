@@ -19,4 +19,8 @@ class RedditController < ApplicationController
       # render :index
     end
   end
+
+  def log
+    @reddit_articles = Reddit::RedditArticleQueryRepository.new.list_by_date(params[:date], params[:score], params[:page])
+  end
 end
