@@ -40,10 +40,11 @@ def database_initialize_administration():
 
 
 def init_fabric():
-    env.user = get_local_env('SSH_USER_NAME')
-    env.port = get_local_env('SSH_PORT')
-    env.key_filename = [get_local_env('SSH_PRIVATE_KEY_FULL_PATH')]
+    env.user = get_aws_infrastructure_env('SSH_USER_NAME')
+    env.port = get_aws_infrastructure_env('SSH_PORT')
+    env.key_filename = [get_aws_infrastructure_env('SSH_PRIVATE_KEY_FULL_PATH')]
 
 
-def get_local_env(env_name):
-    return local('echo $%s' % (env_name), capture=True)
+def get_aws_infrastructure_env(env_name):
+    return local("cat $HOME/github/aws-infrastructure/.envrc | grep %s | awk  -F\\' '{print $2}'" % (env_name),
+                 capture=True)
