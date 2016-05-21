@@ -30,7 +30,7 @@ def create_user(environment):
           + ' IDENTIFIED BY \'%s\'; ' % (password) \
           + ' FLUSH PRIVILEGES; '
 
-    master_user_name = get_local_env('DATABASE_MASTER_USER_NAME')
+    master_user_name = get_master_user_name()
     master_user_password = get_master_user_password(environment)
     execute_sql(environment, master_user_name, master_user_password, sql)
 
@@ -46,23 +46,37 @@ def create_db(environment):
 
 def execute_sql(environment, user_name, password, sql):
     host = get_host(environment)
-    port = get_local_env('DATABASE_PORT')
-    run('mysql -h %s -P %s -u %s -p%s -e "%s"' % (host, port, user_name, password, sql))
+    port = get_port()
+    command = 'mysql -h %s -P %s -u %s -p%s -e "%s"' % (host, port, user_name, password, sql)
+    run(command)
+
+
+def get_master_user_name():
+    return get_aws_infrastructure_env('DATABASE_MASTER_USER_NAME')
 
 
 def get_master_user_password(environment):
     if environment == PRODUCTION:
-        return get_local_env('DATABASE_MASTER_USER_PASSWORD_PRODUCTION')
+        return get_aws_infrastructure_env('DATABASE_MASTER_USER_PASSWORD_PRODUCTION')
     else:
-        return get_local_env('DATABASE_MASTER_USER_PASSWORD_ADMINISTRATION')
+        return get_aws_infrastructure_env('DATABASE_MASTER_USER_PASSWORD_ADMINISTRATION')
 
 
 def get_host(environment):
     if environment == PRODUCTION:
-        return get_local_env('DATABASE_HOST_PRODUCTION')
+        return get_aws_infrastructure_env('DATABASE_HOST_PRODUCTION')
     else:
-        return get_local_env('DATABASE_HOST_ADMINISTRATION')
+        return get_aws_infrastructure_env('DATABASE_HOST_ADMINISTRATION')
+
+
+def get_port():
+    return get_aws_infrastructure_env('DATABASE_PORT')
 
 
 def get_local_env(env_name):
     return local('echo $%s' % (env_name), capture=True)
+
+
+def get_aws_infrastructure_env(env_name):
+    return local("cat $HOME/github/aws-infrastructure/.envrc | grep %s | awk  -F\\' '{print $2}'" % (env_name),
+                 capture=True)

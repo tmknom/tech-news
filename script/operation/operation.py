@@ -66,6 +66,5 @@ def get_current_branch():
     return result
 
 
-@task
 def cleanup_code_deploy():
     sudo('rm -Rf /opt/codedeploy-agent/deployment-root/*')
