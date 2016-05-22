@@ -11,7 +11,7 @@ module Reddit
     end
 
     def extract(sub_reddit)
-      @client.get_hot(sub_reddit, API_PARAMS)
+      @client.get_top(sub_reddit, API_PARAMS)
     end
   end
 end
