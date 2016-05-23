@@ -65,6 +65,7 @@ def db_migrate():
 
 
 def set_cron():
+    bundle('exec whenever --clear-crontab')
     bundle('exec whenever --update-crontab')
 
 
