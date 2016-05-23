@@ -61,7 +61,7 @@ http_interactions:
   recorded_at: Thu, 19 May 2016 08:14:23 GMT
 - request:
     method: get
-    uri: https://oauth.reddit.com/r/gifs/hot.json?api_type=json&limit=100&t=day
+    uri: https://oauth.reddit.com/r/gifs/top.json?api_type=json&limit=100&t=day
     body:
       encoding: US-ASCII
       string: ''
