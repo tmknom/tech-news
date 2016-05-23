@@ -10,7 +10,7 @@ RSpec.describe Reddit::RedditExtraction, type: :model do
         articles = Reddit::RedditExtraction.new.extract('gifs')
 
         expect(articles.size).to eq 11
-        expect(articles[1].title).to eq 'That pizza must be delicious'
+        expect(articles[0].title).to eq '/r/Gifs rules: Please read before submitting or commenting'
       end
     end
   end

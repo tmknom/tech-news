@@ -194,6 +194,7 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    rumoji (0.5.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -282,6 +283,7 @@ DEPENDENCIES
   rails-flog
   redd (~> 0.7.0)
   rspec-rails (~> 3.0)
+  rumoji
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq

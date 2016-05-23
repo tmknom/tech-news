@@ -10,6 +10,7 @@ gem 'awesome_print' # Rubyオブジェクトを綺麗に整形
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6' # Twitter Bootstrap
 gem 'kaminari' # ページャ
 gem 'redd', '~> 0.7.0' # reddit クライアント
+gem 'rumoji' # 絵文字をhuman readableに変更（MySQLに保存できるよう対策/utf8mb4にすれば不要）
 
 group :test do
   # テスト
