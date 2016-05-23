@@ -27,6 +27,10 @@ module Reddit
       score > MINIMUM_POPULAR_SCORE
     end
 
+    def title_with_emoji
+      Rumoji.decode(self[:title])
+    end
+
     def created_at
       self[:created_at].in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M')
     end

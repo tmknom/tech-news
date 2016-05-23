@@ -19,7 +19,7 @@
                     <td style="vertical-align: bottom;">
                         <%= embed_link(reddit_article.reddit_medium).html_safe %>
                         <blockquote>
-                            <a href="<%= reddit_article.url %>"><%= reddit_article.title %></a>
+                            <a href="<%= reddit_article.url %>"><%= reddit_article.title_with_emoji %></a>
                             <ul class="h5 list-inline text-muted">
                                 <li><%= reddit_article.created_at %></li>
                                 <li><%= reddit_article.category %></li>
