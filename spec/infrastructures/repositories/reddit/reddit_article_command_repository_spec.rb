@@ -12,11 +12,13 @@ RSpec.describe Reddit::RedditArticleCommandRepository, type: :model do
       expect(Reddit::RedditArticle.first.url).to eq new_article.url
     end
 
-    it 'DBにデータが存在するので保存しない' do
+    it 'DBにデータが存在するので更新する' do
       # テストデータ投入
       article = create(:reddit_article)
 
       # すでにデータが存在することを確認
+      expect(Reddit::RedditArticle.first.score).to eq article.score
+      expect(Reddit::RedditArticle.first.comment_count).to eq article.comment_count
       expect(Reddit::RedditArticle.first.title).to eq article.title
       expect(Reddit::RedditArticle.all.size).to eq 1
 
@@ -24,7 +26,9 @@ RSpec.describe Reddit::RedditArticleCommandRepository, type: :model do
       new_article = factory_reddit_article(article.url)
       reddit_article_command_repository.save_if_not_exists new_article
 
-      # データが保存されていないことを確認
+      # データが更新されたことを確認
+      expect(Reddit::RedditArticle.first.score).to eq new_article.score
+      expect(Reddit::RedditArticle.first.comment_count).to eq new_article.comment_count
       expect(Reddit::RedditArticle.first.title).to eq article.title
       expect(Reddit::RedditArticle.all.size).to eq 1
     end
