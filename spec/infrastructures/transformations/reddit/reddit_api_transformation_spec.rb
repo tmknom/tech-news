@@ -17,7 +17,7 @@ RSpec.describe Reddit::RedditApiTransformation, type: :model do
       reddit_article = reddit_rss_transformation.transform(items[1], Reddit::RedditCategory::GIFS)
 
       # 確認
-      expect(reddit_article.title).to eq 'That pizza must be delicious'
+      expect(reddit_article.title).to eq 'That pizza must be delicious:sob:'
       expect(reddit_article.url).to eq 'https://www.reddit.com/r/gifs/comments/4jzrka/that_pizza_must_be_delicious/'
       expect(reddit_article.category).to eq Reddit::RedditCategory::GIFS
       expect(reddit_article.posted_at).to eq Time.utc(2016, 5, 19, 0, 4, 16)
