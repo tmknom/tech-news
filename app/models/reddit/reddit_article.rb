@@ -28,7 +28,7 @@ module Reddit
     end
 
     def title_with_emoji
-      Rumoji.decode(self[:title])
+      ::Rumoji.decode(self[:title])
     end
 
     def created_at

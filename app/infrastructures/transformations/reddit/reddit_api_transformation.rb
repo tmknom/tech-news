@@ -39,7 +39,7 @@ module Reddit
     end
 
     def title(item)
-      Rumoji.encode(item.title.force_encoding('utf-8')[0, MAX_MYSQL_RECORD_SIZE])
+      ::Rumoji.encode(item.title.force_encoding('utf-8')[0, MAX_MYSQL_RECORD_SIZE])
     end
 
     def posted_at(item)
