@@ -5,7 +5,7 @@ module Reddit
 
     def list_recently(score, page)
       score = score_or_default(score)
-      where = "reddit_articles.created_at > (CURDATE() - INTERVAL 30 HOUR) AND score > #{score}"
+      where = "reddit_articles.created_at > (CURDATE() - INTERVAL 24 HOUR) AND score > #{score}"
       list(where, page)
     end
 
